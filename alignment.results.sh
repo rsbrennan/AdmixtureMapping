@@ -2,7 +2,7 @@
 
 
 
-cd /home/rsbrenna/Admixture_Mapping/aligned/
+cd /home/rsbrenna/admixture_mapping/aligned/
 
 
 for i in $(ls *.aligned.sam | rev | cut -c 13- |rev)
