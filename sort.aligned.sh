@@ -2,7 +2,7 @@
 module load samtools
 cd /home/rsbrenna/admixture_mapping/aligned
  
-for i in $(ls PP*.bam | rev | cut -c 5-| rev | uniq)
+for i in $(ls PL*.bam | rev | cut -c 5-| rev | uniq)
 do 
 
 samtools sort ${i}.bam /home/rsbrenna/admixture_mapping/aligned/${i}.sort
