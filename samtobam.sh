@@ -1,6 +1,6 @@
 #!/bin/bash 
 module load samtools
-cd /home/rsbrenna/admixture_mapping/aligned
+cd ~/admixture_mapping/processed_data/aligned
  
 for i in $(ls *.aligned.sam | rev | cut -c 13-| rev | uniq)
 do 

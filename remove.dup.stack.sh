@@ -1,10 +1,10 @@
 #!/bin/bash 
 module load samtools
-cd /home/rsbrenna/admixture_mapping/rawdata
+cd /home/rsbrenna/admixture_mapping/processed_data/radtag_checked/
  
-for i in $(ls *.fastq | rev | cut -c 7-| rev | cut -c 16-| uniq)
-do 
-~/bin/stacks-1.34/clone_filter -1 RSB-AM-CB-1_RA_${i}.fastq -2 RSB-AM-CB-1_RB_${i}.fastq -o ~/admixture_mapping/dupremoved 
+for i in $(ls *.fq | rev | cut -c 6- | rev | uniq)
+do
+~/bin/stacks-1.34/clone_filter -1 ${i}.1.fq -2 ${i}.2.fq -o ~/admixture_mapping/processed_data/dupremoved 
 
 
 done
