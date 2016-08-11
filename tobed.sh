@@ -2,4 +2,5 @@
 
 cd ~/admixture_mapping/variants/
 
-~/bin/plink --file AM-1-variants.filter --make-bed --allow-extra-chr --out AM-1-variants.filter
+~/bin/plink --file cb-all.70.plink --make-bed --allow-extra-chr \
+--out cb-all.70

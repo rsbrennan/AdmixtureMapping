@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-cd ~/admixture_mapping/processed_data/aligned/cb-renorm/CB-2/
+cd ~/admixture_mapping/processed_data/aligned/cb-combined/
 
 for i in $(ls *.bam)
 

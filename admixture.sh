@@ -1,3 +1,5 @@
 #!/bin/bash
 
-~/bin/admixture_linux-1.23/admixture out.vcf.gz 4
+cd ~/admixture_mapping/variants/
+
+~/bin/admixture_linux-1.23/admixture cb-all.70.bed 2

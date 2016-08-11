@@ -13,5 +13,8 @@
 
 #tabix -p vcf FD_FM1.1.vcf.gz
 
-vcf-merge FD_FM1.1.vcf.gz CB-1.1.vcf.gz |bgzip -c > out.vcf.gz
+cd ~/admixture_mapping/variants/
 
+zcat ~/admixture_mapping/variants/cb-all.vcf.gz | bgzip > ~/admixture_mapping/variants/cb-all.vcf.1.gz
+
+tabix -p vcf ~/admixture_mapping/variants/cb-all.vcf.1.gz

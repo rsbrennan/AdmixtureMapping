@@ -32,7 +32,7 @@ outfile=$scaf.vcf
 bam_dir=~/admixture_mapping/scripts/bam.list
 vcf_out=~/admixture_mapping/variants/cb-combined
 bam_list=~/admixture_mapping/scripts/bam.cb.list
-pop_list=~/admixture_mapping/pop.list.cb
+pop_list=~/admixture_mapping/scripts/pop.list.cb
 
 $my_bamtools merge -list $bam_list -region $region| \
 $my_bamtools filter -in stdin -mapQuality '>30' -isProperPair true | \
