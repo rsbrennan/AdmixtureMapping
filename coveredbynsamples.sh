@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+#SBATCH --mem=26000
+
 java -jar ~/bin/GenomeAnalysisTK.jar \
 	-T CoveredByNSamplesSites \
 	-V ~/admixture_mapping/variants/cb-all.filtered.vcf.gz \

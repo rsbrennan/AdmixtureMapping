@@ -1,6 +1,14 @@
 #!/bin/bash -l
 
-cd ~/admixture_mapping/variants
+cd ~/admixture_mapping/analysis/
 
-~/bin/vcftools/cpp/vcftools --vcf AM-1-variants.filter.vcf --keep ~/admixture_mapping/scripts/PL_PP.txt --weir-fst-pop ~/admixture_mapping/scripts/PP.txt --weir-fst-pop ~/admixture_mapping/scripts/PL.txt \
---fst-window-size 1000 --fst-window-step 100 --out PP_vs_PL
+zcat  ~/admixture_mapping/variants/cb-all.70.chrom.vcf.gz |\
+sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
+~/bin/vcftools/bin/vcftools --vcf - \
+--keep ~/admixture_mapping/variants/PL_PP.list \
+--maf 0.05 \
+--min-alleles 2 \
+--max-alleles 2 \
+--weir-fst-pop ~/admixture_mapping/variants/PL.list \
+--weir-fst-pop ~/admixture_mapping/variants/PP.list \
+--out PP_vs_PL

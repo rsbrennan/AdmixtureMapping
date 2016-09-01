@@ -2,6 +2,7 @@
 
 cd /home/rsbrenna/admixture_mapping/variants/
 
-/home/rsbrenna/bin/plink --bfile admixed --assoc \
---allow-no-sex --pheno all.pheno.txt \
---adjust --all-pheno --missing-phenotype -9 --out gwas_admix
+/home/rsbrenna/bin/plink --file af.70 --assoc \
+--allow-extra-chr \
+--pheno ~/admixture_mapping/scripts/af.pheno \
+--adjust --all-pheno --missing-phenotype -9 --out gwas_cb.all
