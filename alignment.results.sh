@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-cd ~/admixture_mapping/processed_data/aligned/cb-all/CB-1/
+cd ~/admixture_mapping/processed_data/aligned/AC/run-1/AC-5
 
 for i in $(ls *.bam | cut -c -10 | uniq )
 
@@ -12,7 +12,7 @@ do {
 	FIVE=$(samtools view -h -F 1024 ${i}.bam | samtools view -S -F 4 - | cut -f1 | sort | uniq | wc -l)
 	echo ${i},$ONE,$TWO,$THREE,$FOUR,$FIVE
 
-  } >> ~/admixture_mapping/summary_files/alignment.count.all-CB-1.txt
+  } >> ~/admixture_mapping/summary_files/alignment.count.all-AC-5.txt
 
 
 done

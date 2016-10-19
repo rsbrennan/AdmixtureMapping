@@ -30,7 +30,7 @@ echo $region
 outfile=$scaf.vcf
 
 bam_dir=~/admixture_mapping/scripts/bam.list
-vcf_out=~/admixture_mapping/variants/cb-combined
+vcf_out=~/admixture_mapping/variants/AC/run-1
 bam_list=~/admixture_mapping/scripts/bam.cb.list
 pop_list=~/admixture_mapping/scripts/pop.list.cb
 

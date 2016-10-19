@@ -7,6 +7,7 @@ sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
 ~/bin/vcftools/bin/vcftools --vcf - \
 --keep ~/admixture_mapping/variants/PL_PP.list \
 --maf 0.05 \
+--max-missing 0.75 \
 --min-alleles 2 \
 --max-alleles 2 \
 --weir-fst-pop ~/admixture_mapping/variants/PL.list \
