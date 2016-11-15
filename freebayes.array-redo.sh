@@ -2,7 +2,7 @@
 #SBATCH -J array_job
 #SBATCH -o errorout/array_job_out_%A_%a.txt
 #SBATCH -e errorout/array_job_err_%A_%a.txt
-#SBATCH --array=1-10180
+#SBATCH --array=6821
 #SBATCH -p med
 #SBATCH --mem=12000
 ###### number of nodes

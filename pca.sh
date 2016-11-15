@@ -2,4 +2,4 @@
 
 cd ~/admixture_mapping/variants/
 
-~/bin/flashpca/flashpca --bfile cb-all.70
+~/bin/flashpca/flashpca --bfile AC-run-1_CB
