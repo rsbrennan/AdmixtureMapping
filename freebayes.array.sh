@@ -9,6 +9,8 @@
 ###### number of processors
 #SBATCH --cpus-per-task=6
 
+# mod 2017-01-11
+
 bwagenind=~/reference/heteroclitus_000826765.1_3.0.2_genomic.fa
 my_freebayes=~/bin/freebayes/bin/freebayes
 my_bedtools=~/bin/bedtools2/bin/bedtools
@@ -29,9 +31,9 @@ echo $region
 
 outfile=$scaf.vcf
 
-vcf_out=~/admixture_mapping/variants/AC/run-1
-bam_list=~/admixture_mapping/scripts/bam.ac.all.list
-pop_list=~/admixture_mapping/scripts/pop.list.ac
+vcf_out=~/admixture_mapping/variants/all
+bam_list=~/admixture_mapping/scripts/bam.all.list
+pop_list=~/admixture_mapping/scripts/pop.list.all
 
 $my_bamtools merge -list $bam_list -region $region| \
 $my_bamtools filter -in stdin -mapQuality '>30' -isProperPair true | \

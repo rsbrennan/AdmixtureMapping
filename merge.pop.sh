@@ -3,6 +3,7 @@
 #SBATCH --mail-type=END
 #SBATCH --mail-user=rsbrennan@ucdavis.edu
 
+# mod 2017-01-11
 
 cd ~/admixture_mapping/processed_data/aligned/AC/run-1
 my_bamtools=~/bin/bamtools/bin/bamtools

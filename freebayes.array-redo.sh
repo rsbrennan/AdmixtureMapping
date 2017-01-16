@@ -2,7 +2,7 @@
 #SBATCH -J array_job
 #SBATCH -o errorout/array_job_out_%A_%a.txt
 #SBATCH -e errorout/array_job_err_%A_%a.txt
-#SBATCH --array=6821
+#SBATCH --array=10129-10178
 #SBATCH -p med
 #SBATCH --mem=12000
 ###### number of nodes
@@ -29,9 +29,9 @@ echo $region
 
 outfile=$scaf.vcf
 
-vcf_out=~/admixture_mapping/variants/AC/run-1
-bam_list=~/admixture_mapping/scripts/bam.ac.all.list
-pop_list=~/admixture_mapping/scripts/pop.list.ac
+vcf_out=~/admixture_mapping/variants/all
+bam_list=~/admixture_mapping/scripts/bam.all.list
+pop_list=~/admixture_mapping/scripts/pop.list.all
 
 $my_bamtools merge -list $bam_list -region $region| \
 $my_bamtools filter -in stdin -mapQuality '>30' -isProperPair true | \

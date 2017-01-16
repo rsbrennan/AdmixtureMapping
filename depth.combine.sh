@@ -5,6 +5,8 @@
 ###### number of processors
 #SBATCH --cpus-per-task=8
 
+# mod 2017-01-11
+
 lib=BC
 
 

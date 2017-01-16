@@ -35,6 +35,84 @@ pheno.af <- pheno[grep("AF", pheno$FID),]
 
 #Compute single-SNP statistics
 
+###### morphology ##############
+
+
+###### morphology #########
+
+#pc scores are in the wrong order... just sort
+
+lap <- read.table("morph.geno.overlap", header=FALSE)
+a<- which(pheno$FID %in% lap$V1)
+morph <- subset(pheno, FID %in% lap$V1)
+morph.geno <- new[a,]
+
+pc <- read.table("PC.AF.1", header=FALSE)
+pc.1 <- pc[order(pc$V1),]
+#remove missing individuals from this
+include <- read.table("PC.AF.included", header=FALSE)
+pc.2 <- subset(pc.1, pc.1$V1 %in% include$V1)
+
+
+m <- ncol(morph.geno)
+indiv.res=matrix(NA,ncol=3,nrow=m)
+for(i in 1:m){
+	lm.fit=lm(pc.2$V2~morph.geno[,i]+morph$sex, na.action=na.exclude)
+	indiv.res[i,]=summary(lm.fit)$coefficients[2,c(1,2,4)]
+ }
+
+colnames(indiv.res) <- c("estimate", "stderr", "P")
+
+df <- data.frame(SNP= snp$rs, BP = snp$pos, CHR= snp$chr, estimate=indiv.res[,1], stderr= indiv.res[,2], P= indiv.res[,3])
+
+write.table(df, "~/admixture_mapping/analysis/gwas/gwas.morph.out", row.names=FALSE)
+
+#plot manhattan
+pdf("~/admixture_mapping/summary_files/figures/gwas.morph.manhattan.pdf", width=10, height=5)
+manhattan(df, suggestiveline = F, genomewideline = F, cex=0.7, main="morph PC1 gwas", p="P", logp=TRUE )
+abline(h=(-log10(0.05/6000)), col='red')
+dev.off()
+
+#plot density of observed and expected z-scores
+pdf("~/admixture_mapping/summary_files/figures/gwas.morph.zscores.pdf", width=5, height=5)
+plot(density(indiv.res[,1]/indiv.res[,2],na.rm=TRUE),main="",sub="",xlab="est(b)",ylim=c(0,0.5))
+x=seq(-4,4,length.out=1000)
+lines(x,dnorm(x),lty=2,col="red")
+legend("topleft",lty=c(1,2),col=c("black","red"),legend=c("obs'd","exp'd"))
+dev.off()
+
+
+#### do for pc2
+
+
+
+m <- ncol(morph.geno)
+indiv.res=matrix(NA,ncol=3,nrow=m)
+for(i in 1:m){
+	lm.fit=lm(pc.2$V3~morph.geno[,i]+morph$sex, na.action=na.exclude)
+	indiv.res[i,]=summary(lm.fit)$coefficients[2,c(1,2,4)]
+ }
+
+colnames(indiv.res) <- c("estimate", "stderr", "P")
+
+df <- data.frame(SNP= snp$rs, BP = snp$pos, CHR= snp$chr, estimate=indiv.res[,1], stderr= indiv.res[,2], P= indiv.res[,3])
+
+write.table(df, "~/admixture_mapping/analysis/gwas/gwas.morph.pc2.out", row.names=FALSE)
+
+#plot manhattan
+pdf("~/admixture_mapping/summary_files/figures/gwas.morph.pc2.manhattan.pdf", width=10, height=5)
+manhattan(df, suggestiveline = F, genomewideline = F, cex=0.7, main="morph PC2 gwas", p="P", logp=TRUE )
+abline(h=(-log10(0.05/6000)), col='red')
+dev.off()
+
+#plot density of observed and expected z-scores
+pdf("~/admixture_mapping/summary_files/figures/gwas.morph.pc2.zscores.pdf", width=5, height=5)
+plot(density(indiv.res[,1]/indiv.res[,2],na.rm=TRUE),main="",sub="",xlab="est(b)",ylim=c(0,0.5))
+x=seq(-4,4,length.out=1000)
+lines(x,dnorm(x),lty=2,col="red")
+legend("topleft",lty=c(1,2),col=c("black","red"),legend=c("obs'd","exp'd"))
+dev.off()
+
 ###### pchl ###########
 m <- ncol(new)
 indiv.res=matrix(NA,ncol=3,nrow=m)

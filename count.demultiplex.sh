@@ -1,14 +1,25 @@
 #!/bin/bash -l
+#SBATCH --mail-type=END
+#SBATCH --mail-user=rsbrennan@ucdavis.edu
+#SBATCH -D /home/rsbrenna/admixture_mapping/scripts/slurm-log/
+#SBATCH -o count.demulti-stdout-%j.txt
+#SBATCH -e count.demulti-stderr-%j.txt
+#SBATCH -J count.demulti
 
-cd ~/admixture_mapping/processed_data/demultiplex/AC/run-1/AC-5
+# mod 2017-01-11
 
-for i in $(ls *R1_001.fastq | cut -c -10)
+lane=lane3
+lib=AC-5
+
+cd ~/admixture_mapping/processed_data/demultiplex/AC/run-2/${lane}/${lib}
+
+for i in $(ls *RA.fastq | cut -c -10)
 
 do {
-FORWARD=$(cat ${i}_R1_001.fastq | wc -l) #forward reads
-REVERSE=$(cat ${i}_R2_001.fastq | wc -l) #reverse reads
-echo ${i},$FORWARD,$REVERSE
+FORWARD=$(cat ${i}_RA.fastq | wc -l) #forward reads
+REVERSE=$(cat ${i}_RB.fastq | wc -l) #reverse reads
+echo ${i},${lane},$FORWARD,$REVERSE
 
-  } >> ~/admixture_mapping/summary_files/count.demultiplex.AC-5.txt
+  } >> ~/admixture_mapping/summary_files/count.demultiplex.${lane}.${lib}.txt
 
 done
