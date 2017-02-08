@@ -10,9 +10,9 @@
 
 cd ~/admixture_mapping/variants/
 
-zcat ~/admixture_mapping/variants/all.90.chrom.vcf.gz  |\
+zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
 sed 's/chr//g' |\
-~/bin/vcftools/bin/vcftools --vcf - --plink --out all.90.chrom
+~/bin/vcftools/bin/vcftools --vcf - --plink --out all.chrom
 
 #/home/rsbrenna/bin/plink --file AM-1-variants.filter --make-bed  --allow-extra-chr --out AM-1-variants.filter
 

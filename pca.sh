@@ -12,7 +12,5 @@ cd ~/admixture_mapping/variants/
 
 #pca
 
-~/bin/plink --file all.90.chrom \
---extract all.90.chrom.plink.ld.prune.in \
---keep ~/admixture_mapping/variants/subsamp.list \
---pca header --allow-extra-chr --out pca.sub.all
+~/bin/plink --file chrom.subsamp \
+--pca header --allow-extra-chr --out ~/admixture_mapping/results/pca.subsamp

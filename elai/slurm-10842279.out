@@ -1,0 +1,172 @@
+==========================================
+SLURM_JOB_ID = 10842279
+SLURM_NODELIST = c8-22
+==========================================
+Module slurm/16.05.8 loaded 
+Module openmpi/2.0.1 loaded 
+chr10.AF.recode.pos.txt
+chr10.BC.recode.pos.txt
+chr10.HP.recode.pos.txt
+chr10.PC.recode.pos.txt
+chr10.PL.recode.pos.txt
+chr10.PP.recode.pos.txt
+chr11.AF.recode.pos.txt
+chr11.BC.recode.pos.txt
+chr11.HP.recode.pos.txt
+chr11.PC.recode.pos.txt
+chr11.PL.recode.pos.txt
+chr11.PP.recode.pos.txt
+chr12.AF.recode.pos.txt
+chr12.BC.recode.pos.txt
+chr12.HP.recode.pos.txt
+chr12.PC.recode.pos.txt
+chr12.PL.recode.pos.txt
+chr12.PP.recode.pos.txt
+chr13.AF.recode.pos.txt
+chr13.BC.recode.pos.txt
+chr13.HP.recode.pos.txt
+chr13.PC.recode.pos.txt
+chr13.PL.recode.pos.txt
+chr13.PP.recode.pos.txt
+chr14.AF.recode.pos.txt
+chr14.BC.recode.pos.txt
+chr14.HP.recode.pos.txt
+chr14.PC.recode.pos.txt
+chr14.PL.recode.pos.txt
+chr14.PP.recode.pos.txt
+chr15.AF.recode.pos.txt
+chr15.BC.recode.pos.txt
+chr15.HP.recode.pos.txt
+chr15.PC.recode.pos.txt
+chr15.PL.recode.pos.txt
+chr15.PP.recode.pos.txt
+chr16.AF.recode.pos.txt
+chr16.BC.recode.pos.txt
+chr16.HP.recode.pos.txt
+chr16.PC.recode.pos.txt
+chr16.PL.recode.pos.txt
+chr16.PP.recode.pos.txt
+chr17.AF.recode.pos.txt
+chr17.BC.recode.pos.txt
+chr17.HP.recode.pos.txt
+chr17.PC.recode.pos.txt
+chr17.PL.recode.pos.txt
+chr17.PP.recode.pos.txt
+chr18.AF.recode.pos.txt
+chr18.BC.recode.pos.txt
+chr18.HP.recode.pos.txt
+chr18.PC.recode.pos.txt
+chr18.PL.recode.pos.txt
+chr18.PP.recode.pos.txt
+chr19.AF.recode.pos.txt
+chr19.BC.recode.pos.txt
+chr19.HP.recode.pos.txt
+chr19.PC.recode.pos.txt
+chr19.PL.recode.pos.txt
+chr19.PP.recode.pos.txt
+chr1.AF.recode.pos.txt
+chr1.BC.recode.pos.txt
+chr1.HP.recode.pos.txt
+chr1.PC.recode.pos.txt
+chr1.PL.recode.pos.txt
+chr1.PP.recode.pos.txt
+chr20.AF.recode.pos.txt
+chr20.BC.recode.pos.txt
+chr20.HP.recode.pos.txt
+chr20.PC.recode.pos.txt
+chr20.PL.recode.pos.txt
+chr20.PP.recode.pos.txt
+chr21.AF.recode.pos.txt
+chr21.BC.recode.pos.txt
+chr21.HP.recode.pos.txt
+chr21.PC.recode.pos.txt
+chr21.PL.recode.pos.txt
+chr21.PP.recode.pos.txt
+chr22.AF.recode.pos.txt
+chr22.BC.recode.pos.txt
+chr22.HP.recode.pos.txt
+chr22.PC.recode.pos.txt
+chr22.PL.recode.pos.txt
+chr22.PP.recode.pos.txt
+chr23.AF.recode.pos.txt
+chr23.BC.recode.pos.txt
+chr23.HP.recode.pos.txt
+chr23.PC.recode.pos.txt
+chr23.PL.recode.pos.txt
+chr23.PP.recode.pos.txt
+chr24.AF.recode.pos.txt
+chr24.BC.recode.pos.txt
+chr24.HP.recode.pos.txt
+chr24.PC.recode.pos.txt
+chr24.PL.recode.pos.txt
+chr24.PP.recode.pos.txt
+chr2.AF.recode.pos.txt
+chr2.BC.recode.pos.txt
+chr2.HP.recode.pos.txt
+chr2.PC.recode.pos.txt
+chr2.PL.recode.pos.txt
+chr2.PP.recode.pos.txt
+chr3.AF.recode.pos.txt
+chr3.BC.recode.pos.txt
+chr3.HP.recode.pos.txt
+chr3.PC.recode.pos.txt
+chr3.PL.recode.pos.txt
+chr3.PP.recode.pos.txt
+chr4.AF.recode.pos.txt
+chr4.BC.recode.pos.txt
+chr4.HP.recode.pos.txt
+chr4.PC.recode.pos.txt
+chr4.PL.recode.pos.txt
+chr4.PP.recode.pos.txt
+chr5.AF.recode.pos.txt
+chr5.BC.recode.pos.txt
+chr5.HP.recode.pos.txt
+chr5.PC.recode.pos.txt
+chr5.PL.recode.pos.txt
+chr5.PP.recode.pos.txt
+chr6.AF.recode.pos.txt
+chr6.BC.recode.pos.txt
+chr6.HP.recode.pos.txt
+chr6.PC.recode.pos.txt
+chr6.PL.recode.pos.txt
+chr6.PP.recode.pos.txt
+chr7.AF.recode.pos.txt
+chr7.BC.recode.pos.txt
+chr7.HP.recode.pos.txt
+chr7.PC.recode.pos.txt
+chr7.PL.recode.pos.txt
+chr7.PP.recode.pos.txt
+chr8.AF.recode.pos.txt
+chr8.BC.recode.pos.txt
+chr8.HP.recode.pos.txt
+chr8.PC.recode.pos.txt
+chr8.PL.recode.pos.txt
+chr8.PP.recode.pos.txt
+chr9.AF.recode.pos.txt
+chr9.BC.recode.pos.txt
+chr9.HP.recode.pos.txt
+chr9.PC.recode.pos.txt
+chr9.PL.recode.pos.txt
+chr9.PP.recode.pos.txt
+
+===========================================================================
+Job Finished
+
+Name                : elai.map.sh
+User                : rsbrenna
+Partition           : high
+Nodes               : c8-22
+Cores               : 1
+State               : COMPLETED
+Submit              : 2017-02-03T12:56:43
+Start               : 2017-02-03T12:56:43
+End                 : 2017-02-03T12:56:49
+Reserved walltime   : 04:00:00
+Used walltime       : 00:00:06
+Used CPU time       : 00:00:08
+% User (Computation): 92.16%
+% System (I/O)      :  7.83%
+Mem reserved        : 2600M/core
+Max Mem used        : 0.00  (c8-22)
+Max Disk Write      : 0.00  (c8-22)
+Max Disk Read       : 0.00  (c8-22)

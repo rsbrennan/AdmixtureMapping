@@ -10,23 +10,22 @@
 
 cd ~/admixture_mapping/variants/
 
-sed -i 's/^/x/' all.90.chrom.map
+sed -i 's/^/x/' all.chrom.map
 
 #think markers for ld
-~/bin/plink --file all.90.chrom --indep 50 5 1.7 --mind 0.1 --geno 0.05 \
---maf 0.05 \
+~/bin/plink --file all.chrom --indep 50 5 2 \
 --allow-extra-chr \
---keep ~/admixture_mapping/variants/subsamp.list \
--out all.90.chrom.plink.ld
+--keep ~/admixture_mapping/scripts/subsamp.list \
+-out chrom.subsamp.plink.ld
 
 # output thinned ped
 
-~/bin/plink --file all.90.chrom --extract all.90.chrom.plink.ld.prune.in --recode --allow-extra-chr \
---keep ~/admixture_mapping/variants/subsamp.list \
---out subsamp.chrom
+~/bin/plink --file all.chrom --extract chrom.subsamp.plink.ld.prune.in --recode --allow-extra-chr \
+--keep ~/admixture_mapping/scripts/subsamp.list \
+--out chrom.subsamp
 
 # output thinned bed
 
-~/bin/plink --file all.90.chrom --extract all.90.chrom.plink.ld.prune.in --make-bed --allow-extra-chr \
---keep ~/admixture_mapping/variants/subsamp.list \
---out subsamp.chrom
+~/bin/plink --file all.chrom --extract chrom.subsamp.plink.ld.prune.in --make-bed --allow-extra-chr \
+--keep ~/admixture_mapping/scripts/subsamp.list \
+--out chrom.subsamp

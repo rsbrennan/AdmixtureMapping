@@ -1,29 +1,43 @@
 #!/bin/bash -l
+#SBATCH --mail-type=END
+#SBATCH --mail-user=rsbrennan@ucdavis.edu
+#SBATCH -D /home/rsbrenna/admixture_mapping/scripts/slurm-log/
+#SBATCH -o tobimbam-stdout-%j.txt
+#SBATCH -e tobimbam-stderr-%j.txt
+#SBATCH -J tobimbam
 
-#~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr1.PP \
-#--recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr1.PP
-
-#~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr1.PL \
-#--recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr1.PL
-
-#~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr1.AF \
-#--recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr1.AF
-
+POP=PP
 for chrom in {1..24}; do
-        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.PP \
-        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.PP
-
+        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.${POP} \
+        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.${POP}
 done
 
+POP=PL
 for chrom in {1..24}; do
-        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.PL \
-        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.PL
-
+        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.${POP} \
+        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.${POP}
 done
 
+POP=AF
 for chrom in {1..24}; do
-        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.AF \
-        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.AF
-
+        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.${POP} \
+        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.${POP}
 done
 
+POP=HP
+for chrom in {1..24}; do
+        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.${POP} \
+        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.${POP}
+done
+
+POP=BC
+for chrom in {1..24}; do
+        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.${POP} \
+        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.${POP}
+done
+
+POP=PC
+for chrom in {1..24}; do
+        ~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/plink/chr${chrom}.${POP} \
+        --recode-bimbam --out ~/admixture_mapping/variants/bimbam/chr${chrom}.${POP}
+done

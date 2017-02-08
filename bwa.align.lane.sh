@@ -12,22 +12,23 @@
 
 # mod 2017-01-11
 
-lib=AC-1
-run=run-1
-indir=~/admixture_mapping/processed_data/demultiplex/AC/$run/$lib/
+lib=AC-5
+run=run-2
+lane=combined
+indir=~/admixture_mapping/processed_data/demultiplex/AC/$run/$lane/$lib/
 my_samtools=~/bin/samtools-1.3.1/samtools
 my_bwa=~/bin/bwa-0.7.12/bwa
 my_samblstr=~/bin/samblaster/samblaster
-bwagenind=~/reference/heteroclitus_chromosomes_2017-01-17.fa
+bwagenind=~/reference/heteroclitus_000826765.1_3.0.2_genomic.fa
 outdir=~/admixture_mapping/processed_data/aligned/AC/$run/$lib
 
-fq1=$(find $indir -name "*_RA.fastq" | sed -n $(echo $SLURM_ARRAY_TASK_ID)p)
+fq1=$(find $indir -name "*_RA.fastq.gz" | sed -n $(echo $SLURM_ARRAY_TASK_ID)p)
 fq2=$(echo $fq1 | sed 's/_RA/_RB/g')
 root=$(echo $fq1 | sed 's/.*\///' | cut -f 1 -d "_")
-rg=$(echo \@RG\\tID:$lib\-$root\\tPL:Illumina\\tPU:x\\tLB:$run-$lib\\tSM:$root)
+rg=$(echo \@RG\\tID:$lib\-$lane\-$root\\tPL:Illumina\\tPU:x\\tLB:$run-$lib\\tSM:$root)
 tempsort=$root.temp
 outfile=$outdir/$root.bam
-echo $SLURM_ARRAY_TASK_ID
+
 echo $root
 echo $fq1
 echo $fq2

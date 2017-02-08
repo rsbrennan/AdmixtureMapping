@@ -1,0 +1,43 @@
+==========================================
+SLURM_JOB_ID = 10842283
+SLURM_NODELIST = c8-22
+==========================================
+Module slurm/16.05.8 loaded 
+Module openmpi/2.0.1 loaded 
+## randseed = 2144
+-warning: number of position files = 1
+-warning: position files contain 8453 records.
+-warning: file 0 has 40 individual and 8453 snps
+-warning: file 1 has 40 individual and 8453 snps
+-warning: file 2 has 248 individual and 8453 snps
+number of individuals = 328
+number of SNPs = 8453
+### m_morgan = 0.157282
+-warning: read file 0 again 
+-warning: read file 1 again 
+-warning: read file 2 again 
+-warning: total number of individuals = 328
+nPanel = 80 ## nCohort = 248
+slurmstepd: error: *** JOB 10842283 ON c8-22 CANCELLED AT 2017-02-03T21:19:46 ***
+
+===========================================================================
+Job Finished
+
+Name                : elai.run.1-6.sh
+User                : rsbrenna
+Partition           : high
+Nodes               : c8-22
+Cores               : 1
+State               : CANCELLED,CANCELLED by 790013
+Submit              : 2017-02-03T13:19:36
+Start               : 2017-02-03T13:19:37
+End                 : 2017-02-03T13:19:46
+Reserved walltime   : 1-00:00:00
+Used walltime       :   00:00:09
+Used CPU time       : --
+% User (Computation): 41.46%
+% System (I/O)      : 56.10%
+Mem reserved        : 2600M/core
+Max Mem used        : 0.00  (c8-22)
+Max Disk Write      : 0.00  (c8-22)
+Max Disk Read       : 0.00  (c8-22)

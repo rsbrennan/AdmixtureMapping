@@ -8,10 +8,9 @@
 
 # mod 2017-01-11
 
-cd ~/admixture_mapping/variants/
+cd ~/admixture_mapping/results/
 
-sed -i 's/x//g' subsamp.chrom.bim
+sed -i 's/x//g' ~/admixture_mapping/variants/chrom.subsamp.bim
 
-
-for K in 2 3 4 5 6 7;
-	do ~/bin/admixture_linux-1.23/admixture --cv subsamp.chrom.bed $K | tee log${K}.out; done
+for K in 2 3 4 5 6 7 8;
+	do ~/bin/admixture_linux-1.23/admixture --cv ~/admixture_mapping/variants/chrom.subsamp.bed $K | tee log${K}.out; done

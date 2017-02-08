@@ -1,27 +1,61 @@
 #!/bin/bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=rsbrennan@ucdavis.edu
+#SBATCH -D /home/rsbrenna/admixture_mapping/scripts/slurm-log/
+#SBATCH -o elai_ped-stdout-%j.txt
+#SBATCH -e elai_ped-stderr-%j.txt
+#SBATCH -J elai_ped
+
+#
+#
+#
+
+cd ~/admixture_mapping/variants/
+
+POP=PP
 
 for chrom in {1..24}; do
-	sed 's/chr//g' PL-chrom.vcf | ~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
-	--out ~/admixture_mapping/variants/plink/chr${chrom}.PL
-
+	sed 's/chr//g' ${POP}-chrom.vcf | \
+	~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
+	--out ~/admixture_mapping/variants/plink/chr${chrom}.${POP}
 done
 
+POP=AF
 
-#for chrom in {1..24}; do
-#        sed 's/chr//g' PP-chrom.vcf |  ~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
-#        --out ~/admixture_mapping/variants/plink/chr${chrom}.PP
+for chrom in {1..24}; do
+        sed 's/chr//g' ${POP}-chrom.vcf | \
+        ~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
+        --out ~/admixture_mapping/variants/plink/chr${chrom}.${POP}
+done
 
-#done
+POP=PL
 
+for chrom in {1..24}; do
+        sed 's/chr//g' ${POP}-chrom.vcf | \
+        ~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
+        --out ~/admixture_mapping/variants/plink/chr${chrom}.${POP}
+done
 
-#for chrom in {1..24}; do
-#         sed 's/chr//g' AF-chrom.vcf |  ~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
-#         --out ~/admixture_mapping/variants/plink/chr${chrom}.AF
+POP=PC
 
-#done
+for chrom in {1..24}; do
+        sed 's/chr//g' ${POP}-chrom.vcf | \
+        ~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
+        --out ~/admixture_mapping/variants/plink/chr${chrom}.${POP}
+done
 
+POP=BC
 
-#zcat ~/admixture_mapping/variants/cb-all.70.chrom.vcf.gz | sed 's/Chrom//g' |\
-#~/bin/vcftools/bin/vcftools --vcf - --plink \
-#--out ~/admixture_mapping/variants/plink/cb-all.70.chrom
+for chrom in {1..24}; do
+        sed 's/chr//g' ${POP}-chrom.vcf | \
+        ~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
+        --out ~/admixture_mapping/variants/plink/chr${chrom}.${POP}
+done
 
+POP=HP
+
+for chrom in {1..24}; do
+        sed 's/chr//g' ${POP}-chrom.vcf | \
+        ~/bin/vcftools/bin/vcftools --vcf - --plink --chr ${chrom} \
+        --out ~/admixture_mapping/variants/plink/chr${chrom}.${POP}
+done
