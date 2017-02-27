@@ -8,3 +8,34 @@
 
 
 R CMD BATCH ~/admixture_mapping/scripts/bgc/tobgc.R
+
+
+#change locus_SNP_# to locus_#
+
+cd ~/admixture_mapping/variants/bgc/
+
+sed -i 's/SNP_//g' ~/admixture_mapping/variants/bgc/bgc_CB_Parental1_BGC.txt
+sed -i 's/SNP_//g' ~/admixture_mapping/variants/bgc/bgc_CB_Parental2_BGC.txt
+sed -i 's/SNP_//g' ~/admixture_mapping/variants/bgc/bgc_CB_Admixed_BGC.txt
+sed -i 's/SNP_//g' ~/admixture_mapping/variants/bgc/bgc_AC_Parental1_BGC.txt
+sed -i 's/SNP_//g' ~/admixture_mapping/variants/bgc/bgc_AC_Parental2_BGC.txt
+sed -i 's/SNP_//g' ~/admixture_mapping/variants/bgc/bgc_AC_Admixed_BGC.txt
+
+
+
+#need to make the physical map
+##locus number, chromosome number, location in kb bp.
+
+zcat ~/admixture_mapping/variants/all.chrom.vcf.gz |\
+grep -v '^#' |\
+awk -vOFMT=%10.2f  'BEGIN{OFS=" "}{print $1, $2/1000}' |\
+sed 's/chr//g' > ~/admixture_mapping/variants/bgc/map.txt
+
+#then add snp nums to map
+
+cat ~/admixture_mapping/variants/bgc/bgc_CB_Parental1_BGC.txt |\
+grep 'locus' |\
+cut -f 2 -d "_" |\
+paste - ~/admixture_mapping/variants/bgc/map.txt > ~/admixture_mapping/variants/bgc/map.txt.1
+
+mv ~/admixture_mapping/variants/bgc/map.txt.1 ~/admixture_mapping/variants/bgc/map.txt

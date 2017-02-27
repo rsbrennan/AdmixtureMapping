@@ -10,7 +10,27 @@
 
 cd ~/admixture_mapping/results/
 
-sed -i 's/x//g' ~/admixture_mapping/variants/chrom.subsamp.bim
+POP=CB
 
-for K in 2 3 4 5 6 7 8;
-	do ~/bin/admixture_linux-1.23/admixture --cv ~/admixture_mapping/variants/chrom.subsamp.bed $K | tee log${K}.out; done
+sed -i 's/x//g' ~/admixture_mapping/variants/chrom.${POP}.all.bim
+
+for K in 2 3;
+	do ~/bin/admixture_linux-1.23/admixture --cv ~/admixture_mapping/variants/chrom.${POP}.all.bed $K | tee log${K}.out; 
+done
+
+POP=AC
+
+sed -i 's/x//g' ~/admixture_mapping/variants/chrom.${POP}.all.bim
+
+for K in 2 3;
+	do ~/bin/admixture_linux-1.23/admixture --cv ~/admixture_mapping/variants/chrom.${POP}.all.bed $K | tee log${K}.out; 
+done
+
+POP=N_S.remove.subsamp
+
+sed -i 's/x//g' ~/admixture_mapping/variants/${POP}.bim
+
+for K in 2 3 4 5 6;
+	do ~/bin/admixture_linux-1.23/admixture --cv ~/admixture_mapping/variants/${POP}.bed $K | tee log${K}.out; 
+done
+

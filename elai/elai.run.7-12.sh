@@ -9,9 +9,9 @@
 cd ~/admixture_mapping/analysis/elai/
 
 RANDOM=`date +%N|sed s/...$//`
-GEN=100
+GEN=200
 P1=PL #PL or HP
-P2=PC #PP or PC
+P2=PP #PP or PC
 ADMIX=AF #AF or BC
 
 for chr in {7..12}; do

@@ -4,23 +4,26 @@
 
 cd ~/admixture_mapping/analysis/elai/output/
 
-for i in $(ls *.2.snpinfo.txt | awk -F'.' '{print $1}' | cut -c 4- | sort -n | uniq); do
+rm snpinfo.mod.txt
+touch snpinfo.mod.txt
 
-	cat ~/admixture_mapping/variants/bimbam/chr${i}.PP.recode.pos.txt | awk '{OFS="\t"; {print $1,$2,'${i}'}}' >> snpinfo.mod.txt
+for i in $(ls *.2.200.snpinfo.txt | awk -F'.' '{print $2}' | cut -c 4- | sort -n | uniq); do
+
+	cat ~/admixture_mapping/variants/bimbam/chr${i}.PP.recode.pos.txt |\
+	awk '{OFS="\t"; {print $1,$2,'${i}'}}' >> snpinfo.mod.txt
 
 done
-
-cat ~/admixture_mapping/variants/bimbam/chr1.PP.recode.pos.txt | awk '{OFS="\t"; {print $1,$2,"1"}}' | head
-
 
 #combine ancestry
 
-rm all.combined.ps21.txt
-touch all.combined.ps21.txt
+#rm AF.combined.ps21.txt
+#rm BC.combined.ps21.txt
+#touch AF.combined.ps21.txt
+#touch BC.combined.ps21.txt
 
-for i in $(ls *.2.snpinfo.txt | awk -F'.' '{print $1}' | cut -c 4- | sort -n | uniq); do
+#for POP in AF BC; do
+#	for i in $(ls *.2.200.snpinfo.txt | awk -F'.' '{print $2}' | cut -c 4- | sort -n | uniq); do
 
-	paste all.combined.ps21.txt chr${i}.combined.txt >> all.combined.ps21.txt.1
-	mv all.combined.ps21.txt.1 all.combined.ps21.txt
+#		cat ${POP}.chr${i}.combined.txt >> ${POP}.all.combined.ps21.txt
 
-done
+#done

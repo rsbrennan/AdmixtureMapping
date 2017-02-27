@@ -10,13 +10,7 @@
 cd ~/admixture_mapping/variants/
 
 ~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.chrom.vcf.gz \
-	--keep ~/admixture_mapping/scripts/TR.GA.indivs --recode --out TR.GA
-
-~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.chrom.vcf.gz \
---keep ~/admixture_mapping/scripts/PC.HP.indivs --recode --out PC.HP
-
-~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.chrom.vcf.gz \
---keep ~/admixture_mapping/scripts/PP.PL.indivs --recode --out PP.PL
+	--keep ~/admixture_mapping/scripts/poplists/AF.BC.indivs --recode --out AF.BC
 
 
 

@@ -12,5 +12,5 @@ cd ~/admixture_mapping/variants/
 
 #pca
 
-~/bin/plink --file chrom.subsamp \
---pca header --allow-extra-chr --out ~/admixture_mapping/results/pca.subsamp
+~/bin/plink --file N_S.remove.subsamp \
+--pca header --allow-extra-chr --out ~/admixture_mapping/results/pca.N_S.remove.subsamp

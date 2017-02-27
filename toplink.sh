@@ -12,10 +12,7 @@ cd ~/admixture_mapping/variants/
 
 zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
 sed 's/chr//g' |\
-~/bin/vcftools/bin/vcftools --vcf - --plink --out all.chrom
-
-#/home/rsbrenna/bin/plink --file AM-1-variants.filter --make-bed  --allow-extra-chr --out AM-1-variants.filter
-
-#~/bin/vcftools/bin/vcftools --vcf AM-1-variants.filter.vcf --keep admixed.list --plink --out admixed
-
+~/bin/vcftools/bin/vcftools --vcf - \
+--keep ~/admixture_mapping/scripts/poplists/N_S.remove.subsamp.indivs \
+--plink --out N_S.remove.subsamp
 

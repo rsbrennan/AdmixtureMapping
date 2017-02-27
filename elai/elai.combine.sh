@@ -2,7 +2,11 @@
 
 cd ~/admixture_mapping/analysis/elai/output/
 
-for chrom in $(ls *.log.txt | awk -F'.' '{print $1}' | sort | uniq)
+
+#Pops are AF or BC
+POP=BC
+
+for chrom in $(ls *.log.txt | awk -F'.' '{print $2}' | sort | uniq)
 
 do
 
@@ -17,6 +21,16 @@ awk 'FNR == 1{ nfiles++; ncols = NF }
                			printf " %f", sum[line,col]/nfiles;
        			printf "\n"
        		}
-	}' ${chrom}.[0-9].ps21.txt | cut -f 2- -d " "  > ${chrom}.combined.txt
+	}' ${POP}.${chrom}.[0-9].[0-9]00.ps21.txt > ${POP}.${chrom}.combined.txt
 done
 
+
+#combine the two populations
+
+for chrom in $(ls AF.chr*.combined.txt| awk -F'.' '{print $2}' | sort | uniq)
+
+do
+
+	cat AF.${chrom}.combined.txt BC.${chrom}.combined.txt >  all.${chrom}.combined.txt
+
+done

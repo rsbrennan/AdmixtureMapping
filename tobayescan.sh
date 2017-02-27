@@ -6,6 +6,17 @@
 #SBATCH -e tobayescan-stderr-%j.txt
 #SBATCH -J tobayescan
 
+cd ~/admixture_mapping/variants/
+
+~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.chrom.vcf.gz \
+        --keep ~/admixture_mapping/scripts/poplists/GA.TR.indivs --recode --out TR.GA
+
+~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.chrom.vcf.gz \
+	--keep ~/admixture_mapping/scripts/poplists/HP.PC.indivs --recode --out PC.HP
+
+~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.chrom.vcf.gz \
+        --keep ~/admixture_mapping/scripts/poplists/PP.PL.indivs --recode --out PP.PL
+
 
 cd ~/admixture_mapping/variants/bayescan/
 
