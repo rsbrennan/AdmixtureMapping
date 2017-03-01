@@ -1,5 +1,77 @@
 
 
+######## pull out global ancestry of the indivs #######
+# want to save these outputs for use in gemma as covariates
+specify_decimal <- function(x, k) format(round(x, k), nsmall=k) 
+
+ac <-read.table("~/admixture_mapping/results/chrom.AC.all.2.Q")
+cb <- read.table("~/admixture_mapping/results/chrom.CB.all.2.Q")
+all <- read.table("~/admixture_mapping/results/N_S.remove.subsamp.2.Q")
+id.ac <- read.table("~/admixture_mapping/variants/chrom.AC.all.fam")
+id.cb <- read.table("~/admixture_mapping/variants/chrom.CB.all.fam")
+id.all <- read.table("~/admixture_mapping/variants/N_S.remove.subsamp.fam")
+ordered <- dat[order(dat$label),]
+
+ac.all.global <- as.data.frame(cbind(as.character(id.ac$V1), 
+								specify_decimal(as.numeric(ac$V1), 3)))
+ac.alone.global<- subset(ac.all.global, grepl('BC', ac.all.global$V1))
+cb.all.global <- as.data.frame(cbind(as.character(id.cb$V1), 
+								specify_decimal(as.numeric(cb$V1), 3)))
+cb.alone.global <- subset(cb.all.global, grepl('AF', cb.all.global$V1)) 
+all.global <-  rbind(ac.all.global, cb.all.global)
+all.global <- all.global[order(as.character(all.global$V1)),]
+all.alone.global <- subset(all.global, grepl('AF|BC', all.global$V1)) 
+all.alone.global <- all.alone.global[order(as.character(all.alone.global$V1)),]
+
+
+###################### write gemma covariate files ##############
+
+##### Global ancestry
+ac.all.global.covar <- cbind(rep(1, nrow(ac.all.global)), as.character(ac.all.global$V2))
+ac.alone.global.covar <- cbind(rep(1, nrow(ac.alone.global)), as.character(ac.alone.global$V2))
+cb.all.global.covar <- cbind(rep(1, nrow(cb.all.global)), as.character(cb.all.global$V2))
+cb.alone.global.covar <- cbind(rep(1, nrow(cb.alone.global)), as.character(cb.alone.global$V2))
+all.global.covar <- cbind(rep(1, nrow(all.global)), as.character(all.global$V2))
+all.alone.global.covar <- cbind(rep(1, nrow(all.alone.global)), as.character(all.alone.global$V2))
+
+write.table(ac.all.global.covar,"~/admixture_mapping/analysis/gwas/ac.all.global.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+write.table(ac.alone.global.covar,"~/admixture_mapping/analysis/gwas/ac.alone.global.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+write.table(cb.all.global.covar,"~/admixture_mapping/analysis/gwas/cb.all.global.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+write.table(cb.alone.global.covar,"~/admixture_mapping/analysis/gwas/cb.alone.global.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+write.table(all.global.covar,"~/admixture_mapping/analysis/gwas/all.global.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+write.table(all.alone.global.covar,"~/admixture_mapping/analysis/gwas/all.alone.global.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+
+##### Global ancestry plus "hybrid zone" as covariate
+
+all.global.covar
+
+#Coast=1, chesapeake=0
+
+all.global.zone <- cbind(all.global.covar, rep(NA, nrow(all.global)) )
+all.global.zone[,3][grepl('AF|PP|PL', all.global$V1)] <- c(0)
+all.global.zone[,3][grepl('BC|HP|PC', all.global$V1)] <- c(1)
+
+all.alone.global.zone <- cbind(all.alone.global.covar, rep(NA, nrow(all.alone.global)) )
+all.alone.global.zone[,3][grepl('AF|PP|PL', all.alone.global$V1)] <- c(0)
+all.alone.global.zone[,3][grepl('BC|HP|PC', all.alone.global$V1)] <- c(1)
+
+write.table(all.global.zone,"~/admixture_mapping/analysis/gwas/all.global.zone.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+write.table(all.alone.global.zone,"~/admixture_mapping/analysis/gwas/all.alone.global.zone.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+
+
+############### Plotting results ###################
+
+
+
+
 library(qqman)
 
 bc.local <- read.table("~/admixture_mapping/analysis/gwas/output/bc.local.assoc.txt", header=TRUE)
@@ -102,26 +174,17 @@ out <- inner_join(outlie.af.bc.local, outlie.af.bc , by='rs')
 
 
 
-######## pull out global ancestry of the indivs #######
 
-ac <-read.table("~/admixture_mapping/results/chrom.AC.all.2.Q")
-cb <- read.table("~/admixture_mapping/results/chrom.CB.all.2.Q")
-id.ac <- read.table("~/admixture_mapping/variants/chrom.AC.all.fam")
-id.cb <- read.table("~/admixture_mapping/variants/chrom.CB.all.fam")
-
-all <- rbind(ac, cb)
-id.all <- rbind(id.ac, id.cb)
-ga <- as.data.frame(cbind(as.character(id.all$V1), all$V1))
-ga.1<- subset(ga, grepl('AF|BC', ga$V1))
-global.ancestry<- ga.1[order(ga.1$V1),]
-
-labels <- substr(global.ancestry$V1, 1,2)
 ######### calc number of snps
 
 snp.num <- 0
 for (i in 1:length(names(data_list))){
 	snp.num <- snp.num + dim(data_list[[i]])[2]
 }
+
+
+
+
 
 ######## Temp ##########
 
