@@ -8,25 +8,13 @@
 
 
 cd ~/admixture_mapping/analysis/gwas/
-~/bin/gemma -g ~/admixture_mapping/variants/af.bc.bimbam.thin.geno \
--gk 1 -p ~/admixture_mapping/phenotypes/temp.pheno.alter -o af.bc.thin
 
-cd ~/admixture_mapping/analysis/gwas/
-~/bin/gemma -g ~/admixture_mapping/variants/af.bimbam.thin.geno \
--gk 1 -p ~/admixture_mapping/phenotypes/temp.AF.pheno -o af.thin
+for i in af.bc af bc cb ac N_S_remove; do
+	
+	~/bin/gemma -g ~/admixture_mapping/variants/${i}.bimbam.geno \
+	-gk 1 -p ~/admixture_mapping/phenotypes/temp.${i}.pheno.alter -o ${i}
 
-cd ~/admixture_mapping/analysis/gwas/
-~/bin/gemma -g ~/admixture_mapping/variants/bc.bimbam.thin.geno \
--gk 1 -p ~/admixture_mapping/phenotypes/temp.BC.pheno.alter -o bc.thin
+done
 
-cd ~/admixture_mapping/analysis/gwas/
-~/bin/gemma -g ~/admixture_mapping/variants/af.bc.bimbam.geno \
--gk 1 -p ~/admixture_mapping/phenotypes/temp.pheno.alter -o af.bc
 
-cd ~/admixture_mapping/analysis/gwas/
-~/bin/gemma -g ~/admixture_mapping/variants/af.bimbam.geno \
--gk 1 -p ~/admixture_mapping/phenotypes/temp.AF.pheno -o af
 
-cd ~/admixture_mapping/analysis/gwas/
-~/bin/gemma -g ~/admixture_mapping/variants/bc.bimbam.geno \
--gk 1 -p ~/admixture_mapping/phenotypes/temp.BC.pheno.alter -o bc
