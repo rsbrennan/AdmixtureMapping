@@ -7,7 +7,7 @@
 #SBATCH -J bgc
 
 #CB or AC
-POP=CB
+POP=AC
 
 module load pgi-12.6/hdf5-1.8.9
 module load gsl/2.3
@@ -20,8 +20,8 @@ cd ~/admixture_mapping/analysis/bgc
 	-M ~/admixture_mapping/variants/bgc/map.txt \
 	-F ${POP} \
 	-O 0 \
-	-x 10000 \
-	-n 1000 \
+	-x 5000 \
+	-n 15000 \
 	-t 2 \
 	-p 1 \
 	-q 1 \

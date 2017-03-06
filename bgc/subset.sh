@@ -8,9 +8,44 @@
 
 cd ~/admixture_mapping/variants/
 
-~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.chrom.vcf.gz \
-	--keep ~/admixture_mapping/scripts/poplists/CB.indivs --recode --out CB
+## Filter by LD
+zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
+	~/bin/vcftools/bin/vcftools --vcf - \
+        --plink --out all.chrom
 
-~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.chrom.vcf.gz \
-	--keep ~/admixture_mapping/scripts/poplists/AC.indivs --recode --out AC
+sed -i 's/^/x/' all.chrom.map
+
+~/bin/plink --file ~/admixture_mapping/variants/all.chrom --indep 50 5 2 \
+	--allow-extra-chr -out all.chrom.plink.ld
+
+#Filter pops by ld
+
+zcat ~/admixture_mapping/variants/all.chrom.vcf.gz |\
+        ~/bin/vcftools/bin/vcftools --vcf - \
+	--keep ~/admixture_mapping/scripts/poplists/CB.indivs \
+	--plink --out CB
+
+zcat ~/admixture_mapping/variants/all.chrom.vcf.gz |\
+        ~/bin/vcftools/bin/vcftools --vcf - \
+        --keep ~/admixture_mapping/scripts/poplists/AC.indivs \
+        --plink --out AC
+
+
+~/bin/plink --file ~/admixture_mapping/variants/CB \
+	--extract all.chrom.plink.ld.prune.in \
+	--recode --allow-extra-chr \
+	--out CB.thin
+
+~/bin/plink --file ~/admixture_mapping/variants/AC \
+        --extract all.chrom.plink.ld.prune.in \
+        --recode --allow-extra-chr \
+        --out AC.thin
+
+#change family variable to pop for downstream pop def in genepop
+
+awk -F " " '{gsub(/-[0-9]+\-[0-9]+/,"", $1);print}' CB.thin.ped > CB.thin.ped.1
+mv CB.thin.ped.1 CB.thin.ped
+
+awk -F " " '{gsub(/-[0-9]+\-[0-9]+/,"", $1);print}' AC.thin.ped > AC.thin.ped.1
+mv AC.thin.ped.1 AC.thin.ped
 

@@ -9,10 +9,14 @@
 
 #Pops are AC and CB
 
-POP=CB
+POP=AC
 cd ~/admixture_mapping/variants/bgc
 
-java -Xmx20024m -Xms512M -jar ~/bin/PGDSpider_2.1.0.3/PGDSpider2-cli.jar -inputfile ~/admixture_mapping/variants/${POP}.recode.vcf -inputformat VCF -outputfile ${POP}.genepop -outputformat GENEPOP -spid ~/admixture_mapping/scripts/bgc/${POP}.genepop.spid
+java -Xmx20024m -Xms512M -jar ~/bin/PGDSpider_2.1.0.3/PGDSpider2-cli.jar -inputfile ~/admixture_mapping/variants/${POP}.thin.ped -inputformat PED -outputfile ${POP}.genepop -outputformat GENEPOP -spid ~/admixture_mapping/scripts/bgc/${POP}.genepop.spid
+
+POP=CB
+
+java -Xmx20024m -Xms512M -jar ~/bin/PGDSpider_2.1.0.3/PGDSpider2-cli.jar -inputfile ~/admixture_mapping/variants/${POP}.thin.ped -inputformat PED -outputfile ${POP}.genepop -outputformat GENEPOP -spid ~/admixture_mapping/scripts/bgc/${POP}.genepop.spid
 
 cat AC.genepop | sed 's/HP-/HP_/g' | sed 's/PC-/PC_/g' | sed 's/BC-/BC_/g' >  AC_mod.genepop
 mv AC_mod.genepop AC.genepop

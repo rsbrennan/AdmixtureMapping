@@ -9,7 +9,7 @@
 cd ~/admixture_mapping/variants/
 
 
-for i in AF AF.BC BC CB AC N_S_remove; do
+for i in AF AF.BC BC CB AC N_S.remove; do
 
 	#subsamp vcf and convert to plink
 	zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\

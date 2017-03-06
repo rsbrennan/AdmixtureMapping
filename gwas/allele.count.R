@@ -168,43 +168,4 @@ cb.3$snpname <- gsub("_[0-9]", "", cb.3$snpname)
 write.table(cb.3, "cb.bimbam.thin.geno", row.names=FALSE, col.names=FALSE, quote=FALSE, sep=",")
 #write snp annotation file
 cb.snp.annot <- data.frame(snp.id=cb.3$snpname, pos=str_split_fixed(cb.3$snpname, ":", 2)[,2], chr=str_split_fixed(cb.3$snpname, ":", 2)[,1] )
-write.table(cb.snp.annot, "cb.snp.thin.annotate", row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-
-
-######## AC, thinned ############
-ac <- (fread("AC.thin.raw"))
-ac.1 <- as.data.frame(ac)
-ac.2 <- t(ac.1[,7:ncol(ac)])
-colnames(ac.2) <- ac.1$FID
-ac.3 <-cbind(data.frame(snpname=row.names(ac.2), a1=rep(0,nrow(ac.2)), a2=rep(1, nrow(ac.2))), ac.2)
-ac.3$snpname <- gsub("_[A-Z]", "", ac.3$snpname)
-ac.3$snpname <- gsub("_[0-9]", "", ac.3$snpname)
-
-#write bimbam file
-write.table(ac.3, "ac.bimbam.thin.geno", row.names=FALSE, col.names=FALSE, quote=FALSE, sep=",")
-#write snp annotation file
-ac.snp.annot <- data.frame(snp.id=ac.3$snpname, pos=str_split_fixed(ac.3$snpname, ":", 2)[,2], chr=str_split_fixed(ac.3$snpname, ":", 2)[,1] )
-write.table(ac.snp.annot, "ac.snp.thin.annotate", row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-
-
-######## N_S_remove, not thinned ############
-N_S_remove <- (fread("N_S_remove.thin.raw"))
-N_S_remove.1 <- as.data.frame(N_S_remove)
-N_S_remove.2 <- t(N_S_remove.1[,7:ncol(N_S_remove)])
-colnames(N_S_remove.2) <- N_S_remove.1$FID
-N_S_remove.3 <-cbind(data.frame(snpname=row.names(N_S_remove.2), a1=rep(0,nrow(N_S_remove.2)), a2=rep(1, nrow(N_S_remove.2))), N_S_remove.2)
-N_S_remove.3$snpname <- gsub("_[A-Z]", "", N_S_remove.3$snpname)
-N_S_remove.3$snpname <- gsub("_[0-9]", "", N_S_remove.3$snpname)
-
-#write bimbam file
-write.table(N_S_remove.3, "N_S_remove.bimbam.thin.geno", row.names=FALSE, col.names=FALSE, quote=FALSE, sep=",")
-#write snp annotation file
-N_S_remove.snp.annot <- data.frame(snp.id=N_S_remove.3$snpname, pos=str_split_fixed(N_S_remove.3$snpname, ":", 2)[,2], chr=str_split_fixed(N_S_remove.3$snpname, ":", 2)[,1] )
-write.table(N_S_remove.snp.annot, "N_S_remove.snp.thin.annotate", row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-
-
-
-
-
-
-
+write.table(cb.snp.annot, "c
