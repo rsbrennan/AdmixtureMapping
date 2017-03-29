@@ -9,9 +9,9 @@
 
 cd ~/admixture_mapping/analysis/gwas/
 
-for i in af.bc af bc cb ac N_S_remove; do
+for i in af.bc af bc cb ac N_S.remove; do
 
-	~/bin/gemma -g ~/admixture_mapping/variants/${i}.bimbam.geno \
+	~/bin/gemma -g ~/admixture_mapping/variants/gwas/${i}.bimbam.geno \
 	-gk 1 -p ~/admixture_mapping/phenotypes/temp.${i}.pheno.alter -o ${i}
 
 done

@@ -6,7 +6,7 @@
 #SBATCH -e tobimbam.gwas-stderr-%j.txt
 #SBATCH -J tobimbam.gwas
 
-cd ~/admixture_mapping/variants/
+cd ~/admixture_mapping/variants/gwas/
 
 
 for i in AF AF.BC BC CB AC N_S.remove; do
@@ -16,19 +16,19 @@ for i in AF AF.BC BC CB AC N_S.remove; do
 	sed 's/chr//g' |\
 	~/bin/vcftools/bin/vcftools --vcf - \
 	--keep ~/admixture_mapping/scripts/poplists/${i}.indivs \
-	--plink --out ${i}
+	--plink --out ~/admixture_mapping/variants/gwas/${i}
 
 	# output thinned ped
-	~/bin/plink --file ~/admixture_mapping/variants/${i} --indep 50 5 2 \
-	-out ${i}.plink.ld
+	#~/bin/plink --file ~/admixture_mapping/variants/${i} --indep 50 5 2 \
+	#-out ${i}.plink.ld
 
 	#convert to allele counts
-	~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/${i} \
-        --extract ${i}.plink.ld.prune.in \
-        --recodeA --out ~/admixture_mapping/variants/${i}.thin
+	#~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/${i} \
+        #--extract ${i}.plink.ld.prune.in \
+        #--recodeA --out ~/admixture_mapping/variants/${i}.thin
 
 	#full data
-	~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/${i} \
-        --recodeA --out ~/admixture_mapping/variants/${i}
+	~/bin/plink-1.07-i686/plink --file ~/admixture_mapping/variants/gwas/${i} \
+        --recodeA --out ~/admixture_mapping/variants/gwas/${i}
 
 done
