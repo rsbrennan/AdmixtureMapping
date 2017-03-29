@@ -1,28 +1,36 @@
 #!/bin/bash -l
+#SBATCH -J array_job
+#SBATCH --array=1-10
+#SBATCH -p med
+#SBATCH --mem=2600
 #SBATCH --mail-type=END
 #SBATCH --mail-user=rsbrennan@ucdavis.edu
 #SBATCH -D /home/rsbrenna/admixture_mapping/scripts/slurm-log/
-#SBATCH -o bgc-stdout-%j.txt
-#SBATCH -e bgc-stderr-%j.txt
+#SBATCH -o bgc-stdout-%j-%A_%a.txt
+#SBATCH -e bgc-stderr-%j-%A_%a.txt
 #SBATCH -J bgc
 
 #CB or AC
-POP=AC
+POP=CB
+
+
 
 module load pgi-12.6/hdf5-1.8.9
 module load gsl/2.3
 cd ~/admixture_mapping/analysis/bgc
+
+echo ${POP}.${SLURM_ARRAY_TASK_ID}
 
 ~/bin/bgcdist/bgc \
 	-a ~/admixture_mapping/variants/bgc/bgc_${POP}_Parental1_BGC.txt \
 	-b ~/admixture_mapping/variants/bgc/bgc_${POP}_Parental2_BGC.txt \
 	-h ~/admixture_mapping/variants/bgc/bgc_${POP}_Admixed_BGC.txt \
 	-M ~/admixture_mapping/variants/bgc/map.txt \
-	-F ${POP} \
+	-F ${POP}.${SLURM_ARRAY_TASK_ID} \
 	-O 1 \
 	-x 15000\
 	-n 10000 \
-	-t 1 \
+	-t 2 \
 	-p 1 \
 	-q 1 \
 	-N 1 \
@@ -36,4 +44,3 @@ cd ~/admixture_mapping/analysis/bgc
 	-g 0.05 \
 	-z 0.05 \
 	-e 0.02
-

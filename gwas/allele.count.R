@@ -1,14 +1,14 @@
 library(data.table)
 library(stringr)
 
-# allele count files: AF.BC.raw  AF.BC.thin.raw  AF.raw  AF.thin.raw  BC.raw  BC.thin.raw 
-setwd("~/admixture_mapping/variants/")
+# allele count files: AF.BC.raw AF.raw BC.raw CB.raw AC.raw N_S.remove.raw
+setwd("~/admixture_mapping/variants/gwas")
 
 ###############################################
 #### parent pops not included
 
 ######## BC ############
-bc <- (fread("BC.raw"))
+bc <- (fread("~/admixture_mapping/variants/gwas/BC.raw"))
 bc.1 <- as.data.frame(bc)
 bc.2 <- t(bc.1[,7:ncol(bc)])
 colnames(bc.2) <- bc.1$FID
@@ -23,7 +23,7 @@ bc.snp.annot <- data.frame(snp.id=bc.3$snpname, pos=str_split_fixed(bc.3$snpname
 write.table(bc.snp.annot, "bc.snp.annotate", row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
 
 ######### AF ############
-af <- (fread("AF.raw"))
+af <- (fread("~/admixture_mapping/variants/gwas/AF.raw"))
 af.1 <- as.data.frame(af)
 af.2 <- t(af.1[,7:ncol(af)])
 colnames(af.2) <- af.1$FID
@@ -37,7 +37,7 @@ af.snp.annot <- data.frame(snp.id=af.3$snpname, pos=str_split_fixed(af.3$snpname
 write.table(af.snp.annot, "af.snp.annotate", row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
 
 ########## AF.BC ###########
-af.bc <- (fread("AF.BC.raw"))
+af.bc <- (fread("~/admixture_mapping/variants/gwas/AF.BC.raw"))
 af.bc.1 <- as.data.frame(af.bc)
 af.bc.2 <- t(af.bc.1[,7:ncol(af.bc)])
 #a <- (format(round(af.bc.2, 2), nsmall = 2))
@@ -55,7 +55,7 @@ write.table(af.bc.snp.annot, "af.bc.snp.annotate", row.names=FALSE, col.names=FA
 #### parent pops included
 
 ######## CB ############
-cb <- (fread("CB.raw"))
+cb <- (fread("~/admixture_mapping/variants/gwas/CB.raw"))
 cb.1 <- as.data.frame(cb)
 cb.2 <- t(cb.1[,7:ncol(cb)])
 colnames(cb.2) <- cb.1$FID
@@ -71,7 +71,7 @@ write.table(cb.snp.annot, "cb.snp.annotate", row.names=FALSE, col.names=FALSE, q
 
 
 ######## AC ############
-ac <- (fread("AC.raw"))
+ac <- (fread("~/admixture_mapping/variants/gwas/AC.raw"))
 ac.1 <- as.data.frame(ac)
 ac.2 <- t(ac.1[,7:ncol(ac)])
 colnames(ac.2) <- ac.1$FID
@@ -87,7 +87,7 @@ write.table(ac.snp.annot, "ac.snp.annotate", row.names=FALSE, col.names=FALSE, q
 
 
 ######## N_S_remove ############
-N_S_remove <- (fread("N_S_remove.raw"))
+N_S_remove <- (fread("~/admixture_mapping/variants/gwas/N_S.remove.raw"))
 N_S_remove.1 <- as.data.frame(N_S_remove)
 N_S_remove.2 <- t(N_S_remove.1[,7:ncol(N_S_remove)])
 colnames(N_S_remove.2) <- N_S_remove.1$FID
@@ -96,8 +96,8 @@ N_S_remove.3$snpname <- gsub("_[A-Z]", "", N_S_remove.3$snpname)
 N_S_remove.3$snpname <- gsub("_[0-9]", "", N_S_remove.3$snpname)
 
 #write bimbam file
-write.table(N_S_remove.3, "N_S_remove.bimbam.geno", row.names=FALSE, col.names=FALSE, quote=FALSE, sep=",")
+write.table(N_S_remove.3, "N_S.remove.bimbam.geno", row.names=FALSE, col.names=FALSE, quote=FALSE, sep=",")
 #write snp annotation file
 N_S_remove.snp.annot <- data.frame(snp.id=N_S_remove.3$snpname, pos=str_split_fixed(N_S_remove.3$snpname, ":", 2)[,2], chr=str_split_fixed(N_S_remove.3$snpname, ":", 2)[,1] )
-write.table(N_S_remove.snp.annot, "N_S_remove.snp.annotate", row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+write.table(N_S_remove.snp.annot, "N_S.remove.snp.annotate", row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
 
