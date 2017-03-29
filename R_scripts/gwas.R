@@ -70,9 +70,9 @@ write.table(all.alone.global.zone,"~/admixture_mapping/analysis/gwas/all.alone.g
 ############### Plotting results ###################
 
 
-
-
 library(qqman)
+
+####### without covariates ########
 
 bc.local <- read.table("~/admixture_mapping/analysis/gwas/output/bc.local.assoc.txt", header=TRUE)
 colnames(bc.local) <-  c("CHR", "rs", "BP", "n_miss", "allele1", 
@@ -171,6 +171,86 @@ outlie.af.bc.local <- af.bc.local[which(-log10(af.bc.local$p_wald) > quant[2]),]
 quant <- quantile(-log10(af.bc$p_wald),c(0.95, 0.99), na.rm=TRUE)
 outlie.af.bc <- af.bc[which(-log10(af.bc$p_wald) > quant[2]),]
 out <- inner_join(outlie.af.bc.local, outlie.af.bc , by='rs')
+
+
+
+
+########### global ancestry covariates added ####
+library(qqman)
+
+
+bc <- read.table("~/admixture_mapping/analysis/gwas/output/bc.covar.assoc.txt", header=TRUE)
+colnames(bc) <-  c("CHR", "rs", "BP", "n_miss", "allele1", 
+						"allele0", "af", "beta", "se", "l_remle","p_wald") 
+af <- read.table("~/admixture_mapping/analysis/gwas/output/af.covar.assoc.txt", header=TRUE)
+colnames(af) <-  c("CHR", "rs", "BP", "n_miss", "allele1", 
+						"allele0", "af", "beta", "se", "l_remle","p_wald") 
+af.bc <- read.table("~/admixture_mapping/analysis/gwas/output/af.bc.covar.assoc.txt", header=TRUE)
+colnames(af.bc) <-  c("CHR", "rs", "BP", "n_miss", "allele1", 
+						"allele0", "af", "beta", "se", "l_remle","p_wald") 
+ac <- read.table("~/admixture_mapping/analysis/gwas/output/ac.covar.assoc.txt", header=TRUE)
+colnames(ac) <-  c("CHR", "rs", "BP", "n_miss", "allele1", 
+						"allele0", "af", "beta", "se", "l_remle","p_wald") 
+cb <- read.table("~/admixture_mapping/analysis/gwas/output/cb.covar.assoc.txt", header=TRUE)
+colnames(cb) <-  c("CHR", "rs", "BP", "n_miss", "allele1", 
+						"allele0", "af", "beta", "se", "l_remle","p_wald") 
+all <- read.table("~/admixture_mapping/analysis/gwas/output/N_S.remove.covar.assoc.txt", header=TRUE)
+colnames(all) <-  c("CHR", "rs", "BP", "n_miss", "allele1", 
+						"allele0", "af", "beta", "se", "l_remle","p_wald") 
+
+
+png("~/admixture_mapping/summary_files/ctmax.covar.png",width=7, height= 10, units="in", res = 300)
+par(mfrow = c(6, 1))
+par(mar = c(3, 3, 1, 1), oma = c(1, 1, 1, 1))
+
+#num of blocks estimated from local ancestry: 12553
+
+#png("bc.local.ctmax.png", h=1000, w=1700, pointsize=20)
+manhattan(bc, suggestiveline = F, genomewideline = F, cex=0.7, 
+	main="bc.covar: ctmax", p="p_wald", ylim=c(0,8),
+	logp=TRUE, ylab="-log10p")
+abline(h=(-log10(0.05/nrow(bc))), col='red')
+abline(h=(-log10(0.05/12553)), col='blue')
+#png("af.local.ctmax.png", h=1000, w=1700, pointsize=20)
+manhattan(af, suggestiveline = F, genomewideline = F, cex=0.7, 
+	main="af.covar: ctmax", p="p_wald", ylim=c(0,8),
+	logp=TRUE, ylab="-log10p")
+abline(h=(-log10(0.05/nrow(af))), col='red')
+abline(h=(-log10(0.05/12553)), col='blue')
+#png("af.bc.local.ctmax.png", h=1000, w=1700, pointsize=20)
+manhattan(af.bc, suggestiveline = F, genomewideline = F, cex=0.7, 
+	main="af.bc.covar: ctmax", p="p_wald", ylim=c(0,8),
+	logp=TRUE, ylab="-log10p")
+abline(h=(-log10(0.05/nrow(af.bc))), col='red')
+abline(h=(-log10(0.05/12553)), col='blue')
+#png("af.bc.ctmax.png", h=1000, w=1700, pointsize=20)
+manhattan(ac, suggestiveline = F, genomewideline = F, cex=0.7, 
+	main="coast.covar: ctmax", p="p_wald", ylim=c(0,8),
+	logp=TRUE, ylab="-log10p")
+abline(h=(-log10(0.05/nrow(ac))), col='red')
+abline(h=(-log10(0.05/12553)), col='blue')
+manhattan(cb, suggestiveline = F, genomewideline = F, cex=0.7, 
+	main="Chesapeake: ctmax", p="p_wald", ylim=c(0,8),
+	logp=TRUE, ylab="-log10p")
+abline(h=(-log10(0.05/nrow(cb))), col='red')
+abline(h=(-log10(0.05/12553)), col='blue')
+#png("af.bc.ctmax.png", h=1000, w=1700, pointsize=20)
+manhattan(all, suggestiveline = F, genomewideline = F, cex=0.7, 
+	main="all.covar: ctmax", p="p_wald", ylim=c(0,8),
+	logp=TRUE, ylab="-log10p")
+abline(h=(-log10(0.05/nrow(all))), col='red')
+abline(h=(-log10(0.05/12553)), col='blue')
+
+dev.off()
+
+
+########### global ancestry+ hybrid zone covariates added ####
+
+
+
+
+
+
 
 
 
