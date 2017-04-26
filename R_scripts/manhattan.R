@@ -14,7 +14,6 @@
 
     d$pos=NA
     
-    
     # Fixes the bug where one chromosome is missing by adding a sequential index column.
     d$index=NA
     ind = 0
@@ -46,8 +45,7 @@
     }
 
 
-#sliding window
-
+#sliding window average of fst values
 
 win.size <- 200000
 out <- matrix(ncol=5)
