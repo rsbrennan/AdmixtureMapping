@@ -11,7 +11,7 @@
 #SBATCH -J bgc
 
 #CB or AC
-POP=CB
+POP=AC
 
 
 
@@ -28,8 +28,8 @@ echo ${POP}.${SLURM_ARRAY_TASK_ID}
 	-M ~/admixture_mapping/variants/bgc/map.txt \
 	-F ${POP}.${SLURM_ARRAY_TASK_ID} \
 	-O 1 \
-	-x 15000\
-	-n 10000 \
+	-x 5000\
+	-n 2500 \
 	-t 2 \
 	-p 1 \
 	-q 1 \

@@ -20,9 +20,9 @@ sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
---fst-window-size 500000 \
---fst-window-step 100000 \
---out ${P1}_vs_${P2}.window
+--fst-window-size 150000 \
+--fst-window-step 25000 \
+--out ${P1}_vs_${P2}
 
 #1 HP vs PC
 P1=PC
@@ -36,7 +36,7 @@ sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
---fst-window-size 500000 \
---fst-window-step 100000 \
---out ${P1}_vs_${P2}.window
+--fst-window-size 150000 \
+--fst-window-step 25000 \
+--out ${P1}_vs_${P2}
 
