@@ -8,11 +8,21 @@
 
 # mod 2017-01-11
 
+module load vcftools/0.1.13
+
 cd ~/admixture_mapping/variants/
 
-zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
-sed 's/chr//g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
---keep ~/admixture_mapping/scripts/poplists/N_S.remove.subsamp.indivs \
---plink --out N_S.remove.subsamp
 
+
+#zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
+#sed 's/chr//g' |\
+#~/bin/vcftools/bin/vcftools --vcf - \
+#--keep ~/admixture_mapping/scripts/poplists/N_S.remove.subsamp.indivs \
+#--plink --out N_S.remove.subsamp
+
+zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
+vcftools --vcf - \
+--keep ~/admixture_mapping/scripts/poplists/N_S.remove.subsamp.indivs \
+--plink \
+--chrom-map ~/admixture_mapping/variants/plink-chrom-map.txt \
+ --out N_S.remove.subsamp

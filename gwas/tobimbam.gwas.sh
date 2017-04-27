@@ -6,17 +6,19 @@
 #SBATCH -e tobimbam.gwas-stderr-%j.txt
 #SBATCH -J tobimbam.gwas
 
-cd ~/admixture_mapping/variants/gwas/
+module load vcftools/0.1.13
 
+cd ~/admixture_mapping/variants/gwas/
 
 for i in AF AF.BC BC CB AC N_S.remove; do
 
 	#subsamp vcf and convert to plink
 	zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
 	sed 's/chr//g' |\
-	~/bin/vcftools/bin/vcftools --vcf - \
+	--vcf - \
 	--keep ~/admixture_mapping/scripts/poplists/${i}.indivs \
-	--plink --out ~/admixture_mapping/variants/gwas/${i}
+	--plink --chrom-map ~/admixture_mapping/variants/plink-chrom-map.txt \
+	--out ~/admixture_mapping/variants/gwas/${i}
 
 	# output thinned ped
 	#~/bin/plink --file ~/admixture_mapping/variants/${i} --indep 50 5 2 \

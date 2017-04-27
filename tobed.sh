@@ -12,7 +12,7 @@ cd ~/admixture_mapping/variants/
 
 POP=N_S.remove.subsamp
 
-sed -i 's/^/x/' all.chrom.map
+#sed -i 's/^/x/' all.chrom.map
 
 #think markers for ld
 ~/bin/plink --file all.chrom --indep 50 5 2 \

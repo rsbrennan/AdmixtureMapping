@@ -6,6 +6,8 @@
 #SBATCH -e weir_window-stderr-%j.txt
 #SBATCH -J weir_window
 
+module load vcftools/0.1.13
+
 cd ~/admixture_mapping/analysis/fst
 
 #1 PP vs PL
@@ -16,7 +18,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -27,12 +29,12 @@ sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
 #1 HP vs PC
 P1=PC
 P2=HP
-cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scripts/poplist/${P2}.indivs \
+cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scripts/poplists/${P2}.indivs \
         > ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \

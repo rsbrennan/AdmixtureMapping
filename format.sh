@@ -12,7 +12,7 @@ cd ~/admixture_mapping/variants/
 zcat ~/admixture_mapping/variants/all.filtered.vcf.gz | grep '^#' > header.all.txt
 
 #add header to vcf, also sort vcf
-grep '^chr*' ~/admixture_mapping/variants/all.chrom.vcf | cat header.all.txt - |\
+cat header.all.txt ~/admixture_mapping/variants/all.chrom.vcf |\
 ~/bin/vcftools/perl/vcf-sort -c | awk -v OFS="\t" '$1=$1'| \
 ~/bin/vcftools/bin/vcftools --vcf - --remove-indv PC-369-001 --remove-indv PC-386-017 \
 --recode --recode-INFO-all --stdout |\

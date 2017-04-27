@@ -8,6 +8,8 @@
 
 cd ~/admixture_mapping/analysis/fst
 
+module load vcftools/0.1.13
+
 #1 PP vs PL
 P1=PP
 P2=PL
@@ -16,7 +18,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -30,7 +32,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -44,7 +46,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -58,7 +60,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -72,7 +74,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -86,7 +88,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -100,7 +102,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -114,7 +116,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -128,7 +130,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -142,7 +144,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -156,7 +158,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -170,7 +172,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -184,7 +186,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -198,7 +200,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -212,7 +214,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -226,7 +228,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -240,7 +242,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -254,7 +256,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -268,7 +270,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -282,7 +284,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -296,7 +298,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -310,7 +312,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -324,7 +326,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -338,7 +340,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -352,7 +354,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -366,7 +368,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -380,7 +382,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
@@ -394,7 +396,7 @@ cat  ~/admixture_mapping/scripts/poplists/${P1}.indivs  ~/admixture_mapping/scri
 
 zcat  ~/admixture_mapping/variants/all.chrom.vcf.gz |\
 sed 's/\.:\.:\.:\.:\.:\.:\./\.\/\.:\.:\.:\.:\.:\.:\./g' |\
-~/bin/vcftools/bin/vcftools --vcf - \
+vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
