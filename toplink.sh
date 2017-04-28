@@ -20,9 +20,21 @@ cd ~/admixture_mapping/variants/
 #--keep ~/admixture_mapping/scripts/poplists/N_S.remove.subsamp.indivs \
 #--plink --out N_S.remove.subsamp
 
+#all indivs
 zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
 vcftools --vcf - \
---keep ~/admixture_mapping/scripts/poplists/N_S.remove.subsamp.indivs \
 --plink \
 --chrom-map ~/admixture_mapping/variants/plink-chrom-map.txt \
- --out N_S.remove.subsamp
+--out all.chrom
+
+for i in N_S.remove N_S.remove.subsamp CB AC noadmix;
+do
+
+	zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
+	vcftools --vcf - \
+	--keep ~/admixture_mapping/scripts/poplists/${i}.keep \
+	--plink \
+	--chrom-map ~/admixture_mapping/variants/plink-chrom-map.txt \
+ 	--out ${i}
+
+done
