@@ -19,5 +19,9 @@ cd ~/admixture_mapping/results/
 cd ~/breeding/results/pca/
 #pca
 
-~/bin/flashpca/flashpca --bfile ~/breeding/variants/all.thinned --suffix .all.txt
+~/bin/flashpca/flashpca --bfile ~/admixture_mapping/variants/all.thinned --suffix .all.txt
+
+~/bin/flashpca/flashpca --bfile ~/admixture_mapping/variants/noadmix --suffix .noadmix.txt
+
+~/bin/flashpca/flashpca --bfile ~/admixture_mapping/variants/N_S.remove.subsamp --suffix .N_S.remove.subsamp.txt
 
