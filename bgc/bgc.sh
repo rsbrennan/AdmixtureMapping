@@ -19,7 +19,7 @@ cd ~/admixture_mapping/analysis/bgc
 	-h ~/admixture_mapping/variants/bgc/bgc_${POP}_Admixed_BGC.txt \
 	-M ~/admixture_mapping/variants/bgc/map.txt \
 	-F ${POP} \
-	-O 1 \
+	-O 2 \
 	-x 15000\
 	-n 10000 \
 	-t 1 \

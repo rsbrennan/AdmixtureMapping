@@ -1,6 +1,6 @@
 #############################################################################
 #############################################################################
-############################ fst outliers ###################################
+############################ pi ###################################
 #############################################################################
 #############################################################################
 
@@ -39,6 +39,15 @@ pp.pl$CHR <- (gsub("NW_0", "",pp.pl$CHR))
 pp.pl$CHR <- (gsub("\\.1", "",pp.pl$CHR))
 pp.pl$CHR <- as.numeric(pp.pl$CHR)
 
+pp.pl.out <- data.frame(
+				Chr = pp.pl$CHR.x,
+				BP = pp.pl$BP,
+				SNP = pp.pl$snp,
+				pi_delta = pp.pl$diff.pi,
+				pi_delta_smooth = pp.pl$diff.pi.smooth)
+
+write.table(pp.pl.out, "~/admixture_mapping/analysis/outliers/pi_pp.pl.txt", row.names=FALSE, quote=FALSE  )
+
 #hp vs pc
 
 hp.pc <- merge(x=pc, y=hp, by="snp")
@@ -52,6 +61,14 @@ hp.pc$CHR <- (gsub("NW_0", "",hp.pc$CHR))
 hp.pc$CHR <- (gsub("\\.1", "",hp.pc$CHR))
 hp.pc$CHR <- as.numeric(hp.pc$CHR)
 
+hp.pc.out <- data.frame(
+				Chr = hp.pc$CHR.x,
+				BP  = hp.pc$BP,
+				SNP = hp.pc$snp,
+				pi_delta = hp.pc$diff.pi,
+				pi_delta_smooth = hp.pc$diff.pi.smooth)
+
+write.table(hp.pc.out, "~/admixture_mapping/analysis/outliers/pi_hp.pc.txt", row.names=FALSE, quote=FALSE )
 
 ###
 ### plot pp.pl pi

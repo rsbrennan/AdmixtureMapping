@@ -4,20 +4,87 @@
 #############################################################################
 #############################################################################
 
-library(mscr)
+#library(mscr)
+library(qqman)
+library(ggplot2)
+##############
+##############
+############## pi measures
+##############
+##############
 
 ################ pp vs pl ########
 #find 99% cutoff
-pp.pl <- data_list$PP_vs_PL.weir.fst
-#pp.pl$SNP <- paste(pp.pl$CHR, pp.pl$BP, sep=":")
-pp.pl$CHR <- as.numeric((gsub("chr", "",pp.pl$CHR)))
-quant <- quantile(pp.pl$fst.1,c(0.95, 0.99), na.rm=TRUE)
+pp.pl <- read.table("~/admixture_mapping/analysis/fst/PP_vs_PL.weir.fst", header=TRUE)
+colnames(pp.pl) <- c("CHR", "BP", "fst")
+pp.pl <-pp.pl[order(pp.pl$CHR),]
+pp.pl$fst.1 <- pp.pl$fst
+pp.pl$fst.1[which(pp.pl$fst.1 < 0)] <- c(0)
+pp.pl$fst.1[is.nan(pp.pl$fst.1)] <- c(0)
+pp.pl$snp <- paste(pp.pl$CHR, pp.pl$BP, sep=":")
+
+pp.pl.out <- data.frame(
+				Chr = pp.pl$CHR,
+				BP  = pp.pl$BP,
+				SNP = pp.pl$snp,
+				fst = pp.pl$fst.1)
+write.table(pp.pl.out, "~/admixture_mapping/analysis/outliers/fst_pp.pl.txt", row.names=FALSE, quote=FALSE)
+
+pp.pl$CHR <- (gsub("chr", "",pp.pl$CHR))
+pp.pl$CHR <- (gsub("NW_0", "",pp.pl$CHR))
+pp.pl$CHR <- (gsub("\\.1", "",pp.pl$CHR))
+pp.pl$CHR <- as.numeric(pp.pl$CHR)
+
+quant <- quantile(pp.pl.narm$fst.1,c(0.95, 0.99), na.rm=TRUE)
 
 # plot snp by snp fst
 
 png("~/admixture_mapping/figures/pp-pl_fst.png", h=1000, w=1700, pointsize=20)
 manhattan(pp.pl, suggestiveline = F, genomewideline = F, cex=0.7, 
 	main="Fst- PP vs. PL", p="fst.1", logp=FALSE, ylab="Fst", ylim=c(0,1.1))
+abline(h=quant[2], col='red')
+
+
+
+#Do loess regression
+chroms <- unique(d$CHR)
+for(chr in chroms[1:24]){
+    len <- which(d$CHR == chr)
+    lr <- loess(d$P[len] ~ d$pos[len]) 
+    pos <- d$pos[len]
+    pos.1 <- pos[!is.na(d$P[len])] 
+    lines(x=pos.1, y=lr$fitted, col="red", lwd=1.5)
+}
+    
+dev.off()
+
+
+### From stacks, smoothed
+pp.pl <- read.table("~/admixture_mapping/analysis/pi/all.chrom.fst_PL-PP.tsv", header=FALSE)
+#header.name <- read.table("~/admixture_mapping/analysis/pi/all.chrom.fst_PL-PP.tsv", comment.char = "", 
+		nrow=1, header=TRUE, sep='\t')
+names(pp.pl) <- c("batch_id", "locus_id", "pop1", "pop2", "CHR", "BP","col", "pi", "fst", "FET", "odds", "CI_h",
+					"CI-l", "LOD", "fst_corrected", "Fst_smooth", "Fst_amova", "Fst_amova_corrected",
+					"fst_amova_smooth", "fst_amova_smooth_p", "window_snp_cnt" ) 
+
+pp.pl <-pp.pl[order(pp.pl$CHR),]
+pp.pl$CHR <- (gsub("chr", "",pp.pl$CHR))
+pp.pl$CHR <- (gsub("NW_0", "",pp.pl$CHR))
+pp.pl$CHR <- (gsub("\\.1", "",pp.pl$CHR))
+pp.pl$CHR <- as.numeric(pp.pl$CHR)
+quant <- quantile(pp.pl$fst, c(0.95, 0.99), na.rm=TRUE)
+
+png("~/admixture_mapping/figures/pp-pl_fst_stacks.png", h=1000, w=1700, pointsize=20)
+manhattan(pp.pl, suggestiveline = F, genomewideline = F, cex=0.7, 
+	main="Fst- PP vs. PL- stacks", p="fst", logp=FALSE, ylab="Fst", ylim=c(0,1.1))
+abline(h=quant[2], col='red')
+dev.off()
+
+quant <- quantile(pp.pl$Fst_smooth, c(0.95, 0.99), na.rm=TRUE)
+
+png("~/admixture_mapping/figures/pp-pl_fst_stacks_smooth.png", h=1000, w=1700, pointsize=20)
+manhattan(pp.pl, suggestiveline = F, genomewideline = F, cex=0.7, 
+	main="Fst- PP vs. PL- stacks- smoothed", p="Fst_smooth", logp=FALSE, ylab="Fst", ylim=c(0,1.1))
 abline(h=quant[2], col='red')
 dev.off()
 
@@ -48,11 +115,13 @@ write.table(file="pp-pl.outliers.bed",cbind(outs$CHR,(outs$BP-1),outs$BP),sep="\
 #merge adjoining outlier windows
 merged <- read.table("pp-pl.outliers.bed", header=F)
 #qu is a cutoff, if I want to remove those below a value, buff is how far to look when joining windows
-merged.win <-mergewin(win=merged, stat = outs$fst, qu= quant[2], tails="greater", buff=25000)
+merged.win <-mergewin(win=merged, stat = outs$fst, qu= quant[2], tails="greater", buff=15000)
 mean(merged.win$end - merged.win$start)
 min(merged.win$end - merged.win$start)
 max(merged.win$end - merged.win$start)
 merged.win[(which((merged.win$end - merged.win$start) == max(merged.win$end - merged.win$start))),]
+
+
 
 write.table(merged.win,"pp-pl.merged.win",sep="\t",quote=F,row.names=F,col.names=F)
 
@@ -63,10 +132,36 @@ write.table(file="pp.pl.fst.bed",cbind(pp.pl$CHR,(pp.pl$BP-1),pp.pl$BP, pp.pl$fs
 
 
 
-
+#########
 #################### pc vs hp ########  
-pc.hp <- data_list$PC_vs_HP.weir.fst
-pc.hp$SNP <- paste(pc.hp$CHR, pc.hp$BP, sep=":")
+#########
+
+hp.pc <- read.table("~/admixture_mapping/analysis/fst/HP_vs_PC.weir.fst", header=TRUE)
+colnames(hp.pc) <- c("CHR", "BP", "fst")
+hp.pc <-hp.pc[order(hp.pc$CHR),]
+hp.pc$fst.1 <- hp.pc$fst
+hp.pc$fst.1[which(hp.pc$fst.1 < 0)] <- c(0)
+hp.pc$fst.1[is.nan(hp.pc$fst.1)] <- c(0)
+hp.pc$snp <- paste(hp.pc$CHR, hp.pc$BP, sep=":")
+
+hp.pc.out <- data.frame(
+				Chr = hp.pc$CHR,
+				BP  = hp.pc$BP,
+				SNP = hp.pc$snp,
+				fst = hp.pc$fst.1)
+
+write.table(hp.pc.out, "~/admixture_mapping/analysis/outliers/fst_hp.pc.txt", row.names=FALSE, quote=FALSE)
+
+pp.pl$CHR <- (gsub("chr", "",pp.pl$CHR))
+pp.pl$CHR <- (gsub("NW_0", "",pp.pl$CHR))
+pp.pl$CHR <- (gsub("\\.1", "",pp.pl$CHR))
+pp.pl$CHR <- as.numeric(pp.pl$CHR)
+
+quant <- quantile(pp.pl.narm$fst.1,c(0.95, 0.99), na.rm=TRUE)
+
+
+
+
 pc.hp$CHR <- as.numeric((gsub("chr", "",pc.hp$CHR)))
 #find 99% cutoff
 quant <- quantile(pc.hp$fst.1,c(0.95, 0.99), na.rm=TRUE)
@@ -147,4 +242,5 @@ tohighlight <- paste(pp.pl.bs$V1, pp.pl.bs$V3, sep=":")
 manhattan(pp.pl, suggestiveline = F, genomewideline = F, cex=0.7, 
 	main="Fst- PP vs. PL", p="fst.1", logp=FALSE, ylab="Fst", ylim=c(0,1.1), highlight=tohighlight)
 abline(h=quant[2], col='red')
+
 
