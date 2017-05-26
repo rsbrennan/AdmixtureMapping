@@ -11,12 +11,12 @@
 #SBATCH -J bgc
 
 #CB or AC
-POP=CB
+POP=AC
 
-
-
+#load necessary modules
 module load pgi-12.6/hdf5-1.8.9
 module load gsl/2.3
+
 cd ~/admixture_mapping/analysis/bgc
 
 echo ${POP}.${SLURM_ARRAY_TASK_ID}
@@ -28,8 +28,8 @@ echo ${POP}.${SLURM_ARRAY_TASK_ID}
 	-M ~/admixture_mapping/variants/bgc/map.txt \
 	-F ${POP}.${SLURM_ARRAY_TASK_ID} \
 	-O 0 \
-	-x 3000 \
-	-n 1500 \
+	-x 5000 \
+	-n 2000 \
 	-t 2 \
 	-p 1 \
 	-q 1 \

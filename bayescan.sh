@@ -10,9 +10,9 @@
 #TR.GA
 #PC.HP
 
-POP=PC.HP
+POP=PP.PL
 
-~/bin/BayeScan2.1/source/bayescan_2.1 ~/admixture_mapping/variants/bayescan/${POP}.bscn -od /home/rsbrenna/admixture_mapping/analysis/bayescan -o ${POP}.1k -n 5000 -thin 10 -nbp 20 -pilot 5000 -burn 50000 -pr_odds 1000
+~/bin/BayeScan2.1/source/bayescan_2.1 ~/admixture_mapping/variants/bayescan/${POP}.bscn -od /home/rsbrenna/admixture_mapping/analysis/bayescan -o ${POP} -n 5000 -thin 10 -nbp 20 -pilot 5000 -burn 50000 -pr_odds 10
 
 
 

@@ -24,7 +24,6 @@ cd ~/admixture_mapping/variants/
 --recode --recode-INFO-all --maf 0.05 \
 --minQ 20 --minGQ 30 \
 --min-alleles 2 --max-alleles 2 \
---maxDP 121050 \
 --remove-indels --stdout | bgzip > ~/admixture_mapping/variants/all.filtered.vcf.gz
 
 tabix -p vcf ~/admixture_mapping/variants/all.filtered.vcf.gz

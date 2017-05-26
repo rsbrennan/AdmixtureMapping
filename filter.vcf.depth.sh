@@ -10,7 +10,8 @@
 
 ~/bin/vcftools/bin/vcftools --gzvcf ~/admixture_mapping/variants/all.filtered.vcf.gz \
 --recode --recode-INFO-all --stdout \
---positions ~/admixture_mapping/results/snp.cov.list |\
+--positions ~/admixture_mapping/results/snp.cov.list \
+--max-meanDP 100 |\
 bgzip  >  ~/admixture_mapping/variants/all.vcf.gz
 
 tabix -p vcf ~/admixture_mapping/variants/all.vcf.gz

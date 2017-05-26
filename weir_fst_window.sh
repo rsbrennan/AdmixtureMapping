@@ -22,9 +22,9 @@ vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
---fst-window-size 150000 \
---fst-window-step 25000 \
---out ${P1}_vs_${P2}
+--fst-window-size 50000 \
+--fst-window-step 10000 \
+--out ${P1}_vs_${P2}.window
 
 #1 HP vs PC
 P1=PC
@@ -38,7 +38,7 @@ vcftools --vcf - \
 --keep ~/admixture_mapping/scripts/poplists/${P1}.${P2}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P1}.indivs \
 --weir-fst-pop ~/admixture_mapping/scripts/poplists/${P2}.indivs \
---fst-window-size 150000 \
---fst-window-step 25000 \
---out ${P1}_vs_${P2}
+--fst-window-size 50000 \
+--fst-window-step 10000 \
+--out ${P1}_vs_${P2}.window
 

@@ -7,4 +7,6 @@
 #SBATCH -J allele.count
 
 
-R CMD BATCH ~/admixture_mapping/scripts/gwas/allele.count.R
+#R CMD BATCH ~/admixture_mapping/scripts/gwas/allele.count.R
+
+R CMD BATCH ~/admixture_mapping/scripts/gwas/allele.count.CB.R

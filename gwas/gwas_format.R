@@ -1,11 +1,83 @@
-
-
 ######## pull out global ancestry of the indivs #######
 # want to save these outputs for use in gemma as covariates
 specify_decimal <- function(x, k) format(round(x, k), nsmall=k) 
 
+##
+## read in CB data
+##
+#acnestry assignments
+cb <- read.table("~/admixture_mapping/results/CB.thinned.2.Q")
+#individual id labels
+id.cb <- read.table("~/admixture_mapping/variants/CB.thinned.fam")
+#merge indiv and ancestry, round decimal to 3 places
+cb.all <- as.data.frame(cbind(as.character(id.cb$V1), 
+							specify_decimal(as.numeric(cb$V1), 3)))
+#order of individuals from gwas input, to check that everything matches
+cb.order <- read.table("~/admixture_mapping/variants/gwas/gwas.order", header=FALSE)
+
+##########################################
+###
+### write covariate files
+###
+##########################################
+
+##
+## genome-wide ancestry
+##
+
+cb.all.covar <- cbind(rep(1, nrow(cb.all)), as.character(cb.all$V2))
+
+write.table(cb.all.covar, "~/admixture_mapping/analysis/gwas/cb.all.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+
+##
+## genome-wide ancestry + pheotype specific weights
+##
+
+### ctmax
+#no effect of mass, no covariate necessary
+
+### hploe
+hploe_mass <- read.table("~/admixture_mapping/phenotypes/hploe_cb.mass", header=FALSE)
+
+cb.all.hploe.covar <- cbind(rep(1, nrow(cb.all)), 
+	as.character(cb.all$V2), 
+	as.character(hploe_mass$V1))
+
+write.table(cb.all.hploe.covar, "~/admixture_mapping/analysis/gwas/cb.all.hploe.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+
+### mo2
+
+mo2_mass <- read.table("~/admixture_mapping/phenotypes/mo2_cb.mass", header=FALSE)
+
+cb.all.mo2.covar <- cbind(rep(1, nrow(cb.all)), 
+	as.character(cb.all$V2), 
+	as.character(mo2_mass$V1))
+
+write.table(cb.all.mo2.covar, "~/admixture_mapping/analysis/gwas/cb.all.mo2.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+
+### pchl
+pchl_mass <- read.table("~/admixture_mapping/phenotypes/pchl_cb.mass", header=FALSE)
+
+cb.all.pchl.covar <- cbind(rep(1, nrow(cb.all)), 
+	as.character(cb.all$V2), 
+	as.character(pchl_mass$V1))
+
+write.table(cb.all.pchl.covar, "~/admixture_mapping/analysis/gwas/cb.all.pchl.covar", 
+	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+
+
+
+###################################################################
+###################################################################
+###################################################################
+## ignore everything below this line as of 2017-05-19
+# these scripts work for old phenotypes and for both hybrid zones
+
+
 ac <-read.table("~/admixture_mapping/results/chrom.AC.all.2.Q")
-cb <- read.table("~/admixture_mapping/results/chrom.CB.all.2.Q")
 all <- read.table("~/admixture_mapping/results/N_S.remove.subsamp.2.Q")
 id.ac <- read.table("~/admixture_mapping/variants/chrom.AC.all.fam")
 id.cb <- read.table("~/admixture_mapping/variants/chrom.CB.all.fam")
@@ -164,13 +236,5 @@ write.table(all.global.pchl.zone,"~/admixture_mapping/analysis/gwas/all.global.z
 	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
 write.table(all.alone.global.pchl.zone,"~/admixture_mapping/analysis/gwas/all.alone.global.zone.pchl.covar", 
 	row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-
-
-
-
-
-
-
-
 
 

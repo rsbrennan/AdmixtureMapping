@@ -10,11 +10,13 @@ module load vcftools/0.1.13
 
 cd ~/admixture_mapping/variants/gwas/
 
-for i in AF AF.BC BC CB AC N_S.remove; do
+#for i in AF AF.BC BC CB AC N_S.remove; do
+
+for i in CB; do
 
 	#subsamp vcf and convert to plink
 	zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
-	sed 's/chr//g' |\
+	#sed 's/chr//g' |\
 	vcftools --vcf - \
 	--keep ~/admixture_mapping/scripts/poplists/${i}.indivs \
 	--plink --chrom-map ~/admixture_mapping/variants/plink-chrom-map.txt \
@@ -30,7 +32,8 @@ for i in AF AF.BC BC CB AC N_S.remove; do
         #--recodeA --out ~/admixture_mapping/variants/${i}.thin
 
 	#full data
-	~/bin/plink-1.07-i686/plink --noweb --file ~/admixture_mapping/variants/gwas/${i} \
+	~/bin/plink-1.07-i686/plink --noweb \
+	--file ~/admixture_mapping/variants/gwas/${i} \
         --recodeA --out ~/admixture_mapping/variants/gwas/${i}
 
 done

@@ -10,7 +10,13 @@
 
 cd ~/admixture_mapping/variants/
 
-for POP in N_S.remove N_S.remove.subsamp CB AC noadmix;
+	awk '{ sub("^chr24$", "chr24x", $1)}1' ~/admixture_mapping/variants/all.chrom.map \
+	> ~/admixture_mapping/variants/all.chrom.map.1
+
+	mv ~/admixture_mapping/variants/all.chrom.map.1 ~/admixture_mapping/variants/all.chrom.map
+
+
+for POP in N_S.remove N_S.remove.subsamp CB AC noadmix all.subsamp;
 do
 	#think markers for ld
 	~/bin/plink --file all.chrom --indep 50 5 2 \

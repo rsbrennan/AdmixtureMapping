@@ -25,13 +25,25 @@ sed -i 's/SNP_//g' ~/admixture_mapping/variants/bgc/bgc_AC_Admixed_BGC.txt
 #need to make the physical map
 ##locus number, chromosome number, location in kb bp.
 
-cat ~/admixture_mapping/variants/AC.thin.map |\
+cat ~/admixture_mapping/variants/AC.thinned.map |\
 awk -vOFMT=%10.2f  'BEGIN{OFS=" "}{print $1, $4/1000}' >\
-~/admixture_mapping/variants/bgc/map.txt
+~/admixture_mapping/variants/bgc/map.ac.txt
+
+cat ~/admixture_mapping/variants/bgc/bgc_AC_Parental1_BGC.txt |\
+grep 'locus' |\
+cut -f 2 -d "_" |\
+paste - ~/admixture_mapping/variants/bgc/map.ac.txt > ~/admixture_mapping/variants/bgc/map.ac.txt.1
+
+mv ~/admixture_mapping/variants/bgc/map.ac.txt.1 ~/admixture_mapping/variants/bgc/map.ac.txt
+
+
+cat ~/admixture_mapping/variants/CB.thinned.map |\
+awk -vOFMT=%10.2f  'BEGIN{OFS=" "}{print $1, $4/1000}' >\
+~/admixture_mapping/variants/bgc/map.cb.txt
 
 cat ~/admixture_mapping/variants/bgc/bgc_CB_Parental1_BGC.txt |\
 grep 'locus' |\
 cut -f 2 -d "_" |\
-paste - ~/admixture_mapping/variants/bgc/map.txt > ~/admixture_mapping/variants/bgc/map.txt.1
+paste - ~/admixture_mapping/variants/bgc/map.cb.txt > ~/admixture_mapping/variants/bgc/map.cb.txt.1
 
-mv ~/admixture_mapping/variants/bgc/map.txt.1 ~/admixture_mapping/variants/bgc/map.txt
+mv ~/admixture_mapping/variants/bgc/map.cb.txt.1 ~/admixture_mapping/variants/bgc/map.cb.txt

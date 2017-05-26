@@ -27,7 +27,7 @@ vcftools --vcf - \
 --chrom-map ~/admixture_mapping/variants/plink-chrom-map.txt \
 --out all.chrom
 
-for i in N_S.remove N_S.remove.subsamp CB AC noadmix;
+for i in N_S.remove N_S.remove.subsamp CB AC noadmix all.subsamp;
 do
 
 	zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\

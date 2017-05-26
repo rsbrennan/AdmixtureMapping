@@ -46,8 +46,6 @@ for (i in 1:length(ref$scaff)){
 	print(i)	
 	}
 
-
-#write.table(vcf, "~/admixture_mapping/variants/cb-all.70.chrom.split.vcf", col.names=FALSE, row.names=FALSE, quote=FALSE)
 write.table(vcf, "~/admixture_mapping/variants/all.chrom.vcf", col.names=FALSE, row.names=FALSE, quote=FALSE)
 
 
@@ -96,8 +94,6 @@ coord.convert <- function(number, bp, type){
 #don's annotation
 
 #convert to scaffold names
-
-
 
 awk 'FNR==NR { a[$1]=$2; next } $1 in a { $1=a[$1] }1' \
 ~/reference/convert.scaff.name.ncbi.txt kfish2rae5h_fc17_subupd4.gff3 |\

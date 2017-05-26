@@ -18,7 +18,7 @@ indir=~/admixture_mapping/processed_data/demultiplex/AC/$run/$lib/
 my_samtools=~/bin/samtools-1.3.1/samtools
 my_bwa=~/bin/bwa-0.7.12/bwa
 my_samblstr=~/bin/samblaster/samblaster
-bwagenind=~/reference/heteroclitus_chromosomes_2017-01-17.fa
+bwagenind=~/reference/heteroclitus_000826765.1_3.0.2_genomic.fa
 outdir=~/admixture_mapping/processed_data/aligned/AC/$run/$lib
 
 fq1=$(find $indir -name "*_RA.fastq" | sed -n $(echo $SLURM_ARRAY_TASK_ID)p)

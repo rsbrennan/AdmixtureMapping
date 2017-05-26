@@ -2,53 +2,83 @@
 #SBATCH --mail-type=END
 #SBATCH --mail-user=rsbrennan@ucdavis.edu
 #SBATCH -D /home/rsbrenna/admixture_mapping/scripts/slurm-log/
-#SBATCH -o gemma-stdout-%j.txt
-#SBATCH -e gemma-stderr-%j.txt
-#SBATCH -J gemma
-
+#SBATCH -o gemma.covar-stdout-%j.txt
+#SBATCH -e gemma.covar-stderr-%j.txt
+#SBATCH -J gemma.covar
 
 cd ~/admixture_mapping/analysis/gwas/
 
-~/bin/gemma -g ~/admixture_mapping/variants/af.bc.bimbam.geno \
-	-p ~/admixture_mapping/phenotypes/temp.pheno \
-	-a ~/admixture_mapping/variants/af.bc.snp.annotate \
-	-k ~/admixture_mapping/analysis/gwas/output/af.bc.thin.cXX.txt \
+##
+## cb individuals only
+##
+
+## ctmax, no mass correction needed
+
+~/bin/gemma -g ~/admixture_mapping/variants/gwas/cb.bimbam.geno \
+        -p ~/admixture_mapping/phenotypes/ctmax_cb.pheno \
+        -a ~/admixture_mapping/variants/gwas/cb.snp.annotate \
+        -k ~/admixture_mapping/analysis/gwas/output/cb.ctmax.cXX.txt \
+        -lmm 1 \
+        -c ~/admixture_mapping/analysis/gwas/cb.all.covar \
+        -o cb.ctmax.masscorrect
+
+## hploe, mass corrected phenotypes
+
+~/bin/gemma -g ~/admixture_mapping/variants/gwas/cb.bimbam.geno \
+	-p ~/admixture_mapping/phenotypes/hploe_mass_cb.pheno \
+	-a ~/admixture_mapping/variants/gwas/cb.snp.annotate \
+	-k ~/admixture_mapping/analysis/gwas/output/cb.hploe.cXX.txt \
 	-lmm 1 \
-	-o af.bc
+	-c ~/admixture_mapping/analysis/gwas/cb.all.covar \
+	-o cb.hploe.masscorrect
 
+## hploe, mass as covariate
 
-~/bin/gemma -g ~/admixture_mapping/variants/af.bimbam.geno \
-        -p ~/admixture_mapping/phenotypes/temp.AF.pheno \
-        -a ~/admixture_mapping/variants/af.bc.snp.annotate  \
-        -k ~/admixture_mapping/analysis/gwas/output/af.thin.cXX.txt \
+~/bin/gemma -g ~/admixture_mapping/variants/gwas/cb.bimbam.geno \
+        -p ~/admixture_mapping/phenotypes/hploe_cb.pheno \
+        -a ~/admixture_mapping/variants/gwas/cb.snp.annotate \
+        -k ~/admixture_mapping/analysis/gwas/output/cb.hploe.cXX.txt \
         -lmm 1 \
-        -o af
+        -c ~/admixture_mapping/analysis/gwas/cb.all.hploe.covar \
+        -o cb.hploe.masscovar
 
-~/bin/gemma -g ~/admixture_mapping/variants/bc.bimbam.geno \
-        -p ~/admixture_mapping/phenotypes/temp.BC.pheno \
-        -a ~/admixture_mapping/variants/af.bc.snp.annotate  \
-        -k ~/admixture_mapping/analysis/gwas/output/bc.thin.cXX.txt \
+
+## mo2, mass corrected phenotypes
+
+~/bin/gemma -g ~/admixture_mapping/variants/gwas/cb.bimbam.geno \
+        -p ~/admixture_mapping/phenotypes/mo2_mass_cb.pheno \
+        -a ~/admixture_mapping/variants/gwas/cb.snp.annotate \
+        -k ~/admixture_mapping/analysis/gwas/output/cb.mo2.cXX.txt \
         -lmm 1 \
-        -o bc
+        -c ~/admixture_mapping/analysis/gwas/cb.all.covar \
+        -o cb.mo2.masscorrect
 
-~/bin/gemma -g ~/admixture_mapping/analysis/gwas/af.bc.local.gemma \
-        -p ~/admixture_mapping/phenotypes/temp.pheno \
-        -a ~/admixture_mapping/variants/af.bc.snp.annotate \
-        -k ~/admixture_mapping/analysis/gwas/output/af.bc.thin.cXX.txt \
+## mo2, mass as covariate
+
+~/bin/gemma -g ~/admixture_mapping/variants/gwas/cb.bimbam.geno \
+        -p ~/admixture_mapping/phenotypes/mo2_cb.pheno \
+        -a ~/admixture_mapping/variants/gwas/cb.snp.annotate \
+        -k ~/admixture_mapping/analysis/gwas/output/cb.mo2.cXX.txt \
         -lmm 1 \
-        -o af.bc.local
+        -c ~/admixture_mapping/analysis/gwas/cb.all.mo2.covar \
+        -o cb.mo2.masscovar
 
-~/bin/gemma -g ~/admixture_mapping/analysis/gwas/af.local.gemma \
-        -p ~/admixture_mapping/phenotypes/temp.AF.pheno \
-        -a ~/admixture_mapping/variants/af.bc.snp.annotate  \
-        -k ~/admixture_mapping/analysis/gwas/output/af.thin.cXX.txt \
+## pchl, mass corrected phenotypes
+
+~/bin/gemma -g ~/admixture_mapping/variants/gwas/cb.bimbam.geno \
+        -p ~/admixture_mapping/phenotypes/pchl_mass_cb.pheno \
+        -a ~/admixture_mapping/variants/gwas/cb.snp.annotate \
+        -k ~/admixture_mapping/analysis/gwas/output/cb.pchl.cXX.txt \
         -lmm 1 \
-        -o af.local
+        -c ~/admixture_mapping/analysis/gwas/cb.all.covar \
+        -o cb.pchl.masscorrect
 
-~/bin/gemma -g ~/admixture_mapping/analysis/gwas/bc.local.gemma \
-        -p ~/admixture_mapping/phenotypes/temp.BC.pheno \
-        -a ~/admixture_mapping/variants/af.bc.snp.annotate  \
-        -k ~/admixture_mapping/analysis/gwas/output/bc.thin.cXX.txt \
+## pchl, mass as covariate
+
+~/bin/gemma -g ~/admixture_mapping/variants/gwas/cb.bimbam.geno \
+        -p ~/admixture_mapping/phenotypes/pchl_cb.pheno \
+        -a ~/admixture_mapping/variants/gwas/cb.snp.annotate \
+        -k ~/admixture_mapping/analysis/gwas/output/cb.pchl.cXX.txt \
         -lmm 1 \
-        -o bc.local
-
+        -c ~/admixture_mapping/analysis/gwas/cb.all.pchl.covar \
+        -o cb.pchl.masscovar
