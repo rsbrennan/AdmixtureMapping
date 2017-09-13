@@ -8,16 +8,17 @@
 
 # mod 2017-01-11
 
-COV=10
+COV=8
+POP=all
 
 
-for percent in 0.5 0.6 0.7 0.8 0.9; do
+for percent in 0.7 0.8 0.9; do
 
 	java -jar ~/bin/GenomeAnalysisTK.jar \
 	-T CoveredByNSamplesSites \
-	-V ~/admixture_mapping/variants/all.filtered.vcf.gz \
+	-V ~/admixture_mapping/variants/${POP}.filtered.vcf.gz \
 	-R ~/reference/heteroclitus_000826765.1_3.0.2_genomic.fa\
 	-percentage $percent \
 	-minCov $COV \
-	-out ~/admixture_mapping/results/coveredbyN.$percent.$COV.txt
+	-out ~/admixture_mapping/results/coveredbyN.${POP}.$percent.$COV.txt
 done

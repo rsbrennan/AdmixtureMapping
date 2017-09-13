@@ -12,14 +12,6 @@ module load vcftools/0.1.13
 
 cd ~/admixture_mapping/variants/
 
-
-
-#zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
-#sed 's/chr//g' |\
-#~/bin/vcftools/bin/vcftools --vcf - \
-#--keep ~/admixture_mapping/scripts/poplists/N_S.remove.subsamp.indivs \
-#--plink --out N_S.remove.subsamp
-
 #all indivs
 zcat ~/admixture_mapping/variants/all.chrom.vcf.gz  |\
 vcftools --vcf - \

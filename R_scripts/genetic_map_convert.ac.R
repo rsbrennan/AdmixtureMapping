@@ -1,4 +1,3 @@
-#genetic map
 #/home/jmiller1/bin/code/ALLMAPS_OUT/MF.Map/unsplit_merge.agp
 #this is an agp file. For orientation, ? is treated as +
 #can ignore the U rows.
@@ -19,7 +18,7 @@ ref$rev <- gsub('?', '+', ref$rev, fixed=TRUE)
 
 library(data.table)
 
-vcf <- fread("zcat ~/admixture_mapping/variants/cb.final.vcf.gz| grep -v '^#'", header=FALSE, showProgress=TRUE, sep="\t")
+vcf <- fread("zcat ~/admixture_mapping/variants/ac.filtered.vcf.gz| grep -v '^#'", header=FALSE, showProgress=TRUE, sep="\t")
 
 vcf <- as.data.frame(vcf)
 vcf1 <- vcf
@@ -46,6 +45,8 @@ for (i in 1:length(ref$scaff)){
 	print(i)	
 	}
 
-write.table(vcf, "~/admixture_mapping/variants/cb.chrom.vcf", col.names=FALSE, row.names=FALSE, quote=FALSE)
+write.table(vcf, "~/admixture_mapping/variants/ac.chrom.vcf", col.names=FALSE, row.names=FALSE, quote=FALSE)
+
+
 
 

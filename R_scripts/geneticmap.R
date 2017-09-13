@@ -19,7 +19,7 @@ ref$rev <- gsub('?', '+', ref$rev, fixed=TRUE)
 
 library(data.table)
 
-vcf <- fread("zcat ~/admixture_mapping/variants/all.vcf.gz| grep -v '^#'", header=FALSE, showProgress=TRUE)
+vcf <- fread("zcat ~/admixture_mapping/variants/cb.final.vcf.gz| grep -v '^#'", header=FALSE, showProgress=TRUE)
 
 vcf <- as.data.frame(vcf)
 vcf1 <- vcf
@@ -46,7 +46,7 @@ for (i in 1:length(ref$scaff)){
 	print(i)	
 	}
 
-write.table(vcf, "~/admixture_mapping/variants/all.chrom.vcf", col.names=FALSE, row.names=FALSE, quote=FALSE)
+write.table(vcf, "~/admixture_mapping/variants/cb.test.chrom.vcf", col.names=FALSE, row.names=FALSE, quote=FALSE)
 
 
 
@@ -95,19 +95,19 @@ coord.convert <- function(number, bp, type){
 
 #convert to scaffold names
 
-awk 'FNR==NR { a[$1]=$2; next } $1 in a { $1=a[$1] }1' \
-~/reference/convert.scaff.name.ncbi.txt kfish2rae5h_fc17_subupd4.gff3 |\
-tr ' ' '\t' | bgzip > kfish2rae5h_fc17_subupd4.gff3.gz
+#awk 'FNR==NR { a[$1]=$2; next } $1 in a { $1=a[$1] }1' \
+#~/reference/convert.scaff.name.ncbi.txt kfish2rae5h_fc17_subupd4.gff3 |\
+#tr ' ' '\t' | bgzip > kfish2rae5h_fc17_subupd4.gff3.gz
 
-cat /home/jmiller1/bin/code/breakpoints.map_ncbi.bed
-cat /home/jmiller1/bin/code/list.SPLIT.ncbi.contigs
-NW_012224574.1.2
+#cat /home/jmiller1/bin/code/breakpoints.map_ncbi.bed
+#cat /home/jmiller1/bin/code/list.SPLIT.ncbi.contigs
+#NW_012224574.1.2
 #convert the coordinates
-~/bin/liftOver -gff kfish2rae5h_fc17_subupd4.gff3.gz /home/jmiller1/bin/code/merged_ncbi.chain kfish2rae5h_fc17_subupd4.chr.gff unmapped
+#~/bin/liftOver -gff kfish2rae5h_fc17_subupd4.gff3.gz /home/jmiller1/bin/code/merged_ncbi.chain kfish2rae5h_fc17_subupd4.chr.gff unmapped
 
 #the problem: there are 9 split scaffolds- these need to be split in order for don's gff to work with liftover.
 #the "unmapped" genes are thost that are on split scaffolds
 
-This file lists the locations of the splits: list.SPLIT.ncbi.contigs.agp
+#This file lists the locations of the splits: list.SPLIT.ncbi.contigs.agp
 
 

@@ -50,6 +50,11 @@ write.table(dat.cl.merge$spmass,
 				"~/admixture_mapping/phenotypes/pchl_cb.mass",
 				quote=FALSE, row.name=FALSE, col.name=FALSE)
 
+#quantile normalization:
+write.table(qqnorm(dat.cl.merge$pchl,plot.it =F)$x, 
+				"~/admixture_mapping/phenotypes/pchl_norm_cb.pheno",
+				quote=FALSE, row.name=FALSE, col.name=FALSE)
+
 
 #### 
 #### hypoxia
@@ -75,6 +80,11 @@ write.table(dat.hploe.merge$MChploe,
 #write mass for covariate
 write.table(dat.hploe.merge$hpmass, 
 				"~/admixture_mapping/phenotypes/hploe_cb.mass",
+				quote=FALSE, row.name=FALSE, col.name=FALSE)
+
+#quantile normalization:
+write.table(qqnorm(dat.hploe.merge$hploe,plot.it =F)$x, 
+				"~/admixture_mapping/phenotypes/hploe_norm_cb.pheno",
 				quote=FALSE, row.name=FALSE, col.name=FALSE)
 
 #### 
@@ -103,6 +113,11 @@ write.table(dat.mo2.merge$mass,
 				"~/admixture_mapping/phenotypes/mo2_cb.mass",
 				quote=FALSE, row.name=FALSE, col.name=FALSE)
 
+#quantile normalization:
+write.table(qqnorm(dat.mo2.merge$amo2,plot.it =F)$x, 
+				"~/admixture_mapping/phenotypes/mo2_norm_cb.pheno",
+				quote=FALSE, row.name=FALSE, col.name=FALSE)
+
 #### 
 #### CTmax
 ####
@@ -120,9 +135,10 @@ write.table(dat.ctmax.merge$calctmax,
 				"~/admixture_mapping/phenotypes/ctmax_cb.pheno",
 				quote=FALSE, row.name=FALSE, col.name=FALSE)
 
-
-
-
+#quantile normalization:
+write.table(qqnorm(dat.ctmax.merge$calctmax,plot.it =F)$x, 
+				"~/admixture_mapping/phenotypes/ctmax_norm_cb.pheno",
+				quote=FALSE, row.name=FALSE, col.name=FALSE)
 
 
 

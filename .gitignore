@@ -1,0 +1,9 @@
+**.vcf
+*.list
+*.spid
+*.RData
+*.Rout
+*.bed
+.pversion
+errorout/
+slurm-log/

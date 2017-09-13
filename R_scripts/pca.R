@@ -1,3 +1,4 @@
+
 #files in ~/admixture_mapping/results/pca/
 
 ##
@@ -171,4 +172,46 @@ plot(x=dat$PC2, y=dat$PC3,
 	pch=19)
 legend(x="bottomright", legend = levels(dat$pop), col=col.plot, pch=19)
 dev.off()
+
+
+##
+## CB only
+##
+
+dat <- read.table("~/admixture_mapping/analysis/pca/pcs.CB.txt", header=FALSE)
+var <- read.table("~/admixture_mapping/analysis/pca/pve.CB.txt")
+labels <- read.table("~/admixture_mapping/variants/CB.thinned.fam", header=FALSE)
+dat <- cbind (labels$V1, dat)
+dat <- cbind (substr(labels$V1, 1,2), dat)
+colnames(dat) <- c("pop", "indiv", "PC1", "PC2", "PC3", "PC4","PC5", "PC6", "PC7", "PC8", "PC9", "PC10")
+
+col.plot <- c("purple", "blue", "red")
+png("~/admixture_mapping/figures/PCA_PC1_PC2_CB.png", h=1000, w=1000, pointsize=20)
+par(mar = c(4, 5, 1, 1), oma = c(1, 1, 1, 1))
+plot(x=dat$PC1, y=dat$PC2, 
+	bg=col.plot[dat$pop], 
+	xlab="PC1",
+	ylab="PC2",
+#	xlab=paste("PC-1: ", round((var$V1[1]*100), 1), "%", sep=""), 
+#	ylab=paste("PC-2: ", round((var$V1[2]*100), 1), "%", sep=""),
+	main="", 
+	cex=2,
+	pch=21,
+	cex.axis=1.5, cex.lab=1.5,)
+legend(x="topleft", legend = c("admixed", "BW-native", "FW-native"), 
+	col=col.plot, pch=19, cex=1.6)
+dev.off()
+
+png("~/admixture_mapping/results/PCA_PC2_PC3_N_S.remove.subsamp.png", h=1000, w=1000, pointsize=20)
+plot(x=dat$PC2, y=dat$PC3, 
+	col=col.plot[dat$pop], 
+	xlab=paste("PC-2: ", round((var$V1[2]*100), 1), "%", sep=""), 
+	ylab=paste("PC-3: ", round((var$V1[3]*100), 1), "%", sep=""),
+	main="PCA: PC2 vs PC3; GA & NH rm, Admix thinned" ,
+	cex=1.6,
+	pch=19)
+legend(x="bottomright", legend = levels(dat$pop), col=col.plot, pch=19)
+dev.off()
+
+
 

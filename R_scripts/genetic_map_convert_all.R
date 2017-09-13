@@ -19,7 +19,7 @@ ref$rev <- gsub('?', '+', ref$rev, fixed=TRUE)
 
 library(data.table)
 
-vcf <- fread("zcat ~/admixture_mapping/variants/cb.final.vcf.gz| grep -v '^#'", header=FALSE, showProgress=TRUE, sep="\t")
+vcf <- fread("zcat ~/admixture_mapping/variants/all.final.vcf.gz| grep -v '^#'", header=FALSE, showProgress=TRUE, sep="\t")
 
 vcf <- as.data.frame(vcf)
 vcf1 <- vcf
@@ -46,6 +46,5 @@ for (i in 1:length(ref$scaff)){
 	print(i)	
 	}
 
-write.table(vcf, "~/admixture_mapping/variants/cb.chrom.vcf", col.names=FALSE, row.names=FALSE, quote=FALSE)
-
+write.table(vcf, "~/admixture_mapping/variants/all.chrom.vcf", col.names=FALSE, row.names=FALSE, quote=FALSE)
 
