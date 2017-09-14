@@ -10,7 +10,7 @@ cd ~/admixture_mapping/processed_data/aligned/AC-combined
 my_bamtools=~/bin/bamtools/bin/bamtools
 pop=TR
 
-$my_bamtools merge -list ~/admixture_mapping/scripts/bam.$pop.list |\
+$my_bamtools merge -list ~/admixture_mapping/scripts/poplists/bam.$pop.list |\
 ~/bin/samtools-1.3.1/samtools sort - -T $pop.temp -O bam |\
 ~/bin/samtools-1.3.1/samtools view -b -h -F 0x0004 -F 0x0400 - | \
 bedtools coverage -abam stdin \
